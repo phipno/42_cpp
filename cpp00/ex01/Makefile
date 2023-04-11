@@ -6,15 +6,15 @@
 #    By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/03/30 17:08:20 by pnolte           ###   ########.fr        #
+#    Updated: 2023/04/11 17:45:23 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = megaphone
+NAME = phoneybook
 
-SRC = megaphone.cpp
+SRC = phoneybook.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
@@ -43,10 +43,10 @@ re: fclean all
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. TESTS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
 test1: all
-	./$(NAME) "shhhhh... I think the students are asleep..."
+	./$(NAME)
 
 test2: all
-	./$(NAME) Damnit " ! " "Sorry students, I thought this thing was off."
+	./$(NAME)
 
 test3: all
 	./$(NAME)
