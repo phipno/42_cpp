@@ -1,11 +1,9 @@
 #include <iostream>
+#include <string>
 
 int main(){
-	int x;
-	int a(11);
-	
-	x = 0;
-	std::cout << a;
-	printf("Hello again here from PRINTF%d\n", x);
-	return 0;
+	std::string name = "philipp";
+	std::cout << name << std::endl;
+
+	std::cin.get();
 }

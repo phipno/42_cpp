@@ -1,44 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/29 18:13:04 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/12 16:33:53 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/12 09:15:09 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/13 17:38:34 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cctype>
+#include <string>
 
-int main(int argc, char *argv[])
+int main(void)
 {
-	int				i = 0;
-	int				j = 1;
-	unsigned char	c;
+	bool		exit = false;
+	std::string	line;
 
-	if (argc > 1)
+	while (exit != true)
 	{
-		while (j < argc)
+		std::getline(std::cin, line);
+		if (line.empty() == false)
 		{
-			i = 0;
-			while (argv[j][i] != '\0')
-			{
-				c = argv[j][i];
-				argv[j][i] = toupper(c);
-				std::cout << argv[j][i];
-				i++;
-			}
-			std::cout << ' ';
-			j++;
+			if (line )
+
+			std::cout << line << std::endl;
 		}
-		std::cout << '\n';
 	}
-	else
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-	return 0;
+	return (EXIT_SUCCESS);
 }
 
 /* ************************************************************************** */
