@@ -6,7 +6,7 @@
 #    By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/04/12 09:16:45 by pnolte           ###   ########.fr        #
+#    Updated: 2023/04/14 17:34:38 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = phoneybook
 
-SRC = phoneybook.cpp
+SRC = phoneybook.cpp contact.cpp main.cpp
 
 OBJS = $(SRC:.cpp=.o)
 

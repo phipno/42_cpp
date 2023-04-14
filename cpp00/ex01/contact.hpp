@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 09:15:09 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/14 20:40:35 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/14 12:32:05 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/14 16:52:39 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef __CONTACT_H__
+#define __CONTACT_H__
+
 #include <string>
-#include "phoneybook.hpp"
 
-int main(void) {
-	std::string	line;
-	PhoneBook	book;
+class Contact {
+   public:
+    Contact(void);
+    ~Contact(void);
 
-	while (42)
-	{
-		std::cout << "My PhoneyBook takes <ADD>, <SEARCH> and <EXIT>" << std::endl;
-		std::cout << "📞📖:";
-		std::getline(std::cin, line);
-		if (line.empty() == false) {
-			if (line == "ADD")
-				book.Add(&book);
-			else if (line == "SEARCH")
-				book.Search(book);
-			else if (line == "EXIT")
-				return(EXIT_SUCCESS);
-		}
-	}
-}
+    void        AssignStr(void);
+    std::string GetStrFN(void);
+    std::string GetStrLN(void);
+    std::string GetStrNN(void);
+    std::string GetStrPN(void);
+    std::string GetStrDS(void);
+
+   private:
+    std::string first_name_;
+    std::string last_name_;
+    std::string nick_name_;
+    std::string phone_number_;
+    std::string darkest_secret_;
+};
+
+#endif
 
 /* ************************************************************************** */
