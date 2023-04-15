@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:08:32 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/14 20:47:51 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/04/15 16:42:42 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void PhoneBook::DisplayDis(PhoneBook book){
         i = std::stoi(line, nullptr);
     }
     catch (std::exception) {}
-    if ((i < book.index_ && book.full_ == false)
-            || (i < 8 && book.full_ == true)) {
+    if (((i < book.index_ && book.full_ == false)
+            || (i < 8 && book.full_ == true)) && i >= 0) {
         std::cout << "📇Index     : " << i << std::endl;
         std::cout << "🧑First Name: " << book.contacts_[i].GetStrFN() << std::endl;
         std::cout << "👪Last Name : " << book.contacts_[i].GetStrLN() << std::endl;
