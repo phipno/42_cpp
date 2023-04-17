@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 16:53:31 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/17 17:19:08 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/04/17 19:10:10 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,11 @@ void Account::displayStatus(void) const {
 void Account::_displayTimestamp(void) {
     time_t      rawtime;
     struct tm   *timeinfo;
-    char        buffer[80];
+    char        buffer[42];
 
     time(&rawtime);
     timeinfo = localtime(&rawtime);
-
-    strftime(buffer, 80, "[%Y%m%d_%H%M%S]", timeinfo);
+    strftime(buffer, 42, "[%Y%m%d_%H%M%S]", timeinfo);
     std::cout << buffer;
 }
 
