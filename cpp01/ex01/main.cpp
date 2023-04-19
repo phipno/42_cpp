@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 21:38:55 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/19 13:41:00 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/17 21:23:36 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/19 15:31:30 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-
 #include "Zombie.hpp"
 
-void randomChump( std::string name ) {
-    Zombie rotten_stack(name);
-    
-    rotten_stack.announce();
+int main( void ){
+    Zombie *rotten_array = zombieHorde( 5, "GangGang" );
+
+    delete []rotten_array;
+    system("leaks Moar_brainz!");
 }
 
 /* ************************************************************************** */

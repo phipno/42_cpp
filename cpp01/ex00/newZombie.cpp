@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:38:50 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/17 21:55:23 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/04/19 13:59:22 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 #include "Zombie.hpp"
 
 
-Zombie::Zombie* newZombie( std::string name ) {
-    Zombie *rotten_flesh;
+Zombie* newZombie( std::string name ) {
+    Zombie *rotten_heap = new Zombie(name);
 
-    new (rotten_flesh)
-    _name = name;
-    return rotten_flesh;
+    rotten_heap->announce();
+    return rotten_heap;
 }
 
 /* ************************************************************************** */

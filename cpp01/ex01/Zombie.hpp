@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 21:38:55 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/19 13:41:00 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/17 21:24:07 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/19 15:15:04 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef __ZOMBIE_H__
+#define __ZOMBIE_H__
+
 #include <string>
 
-#include "Zombie.hpp"
+class Zombie {
+   public:
+    Zombie( void );
+    ~Zombie( void );
 
-void randomChump( std::string name ) {
-    Zombie rotten_stack(name);
-    
-    rotten_stack.announce();
-}
+    void announce( void );
+    void SetName( std::string name );
+
+   private:
+    std::string name_;
+};
+
+Zombie* zombieHorde( int N, std::string name );
+
+#endif // __ZOMBIE_H__
 
 /* ************************************************************************** */

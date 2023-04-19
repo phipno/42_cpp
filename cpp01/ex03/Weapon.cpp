@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 21:38:55 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/19 13:41:00 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/19 17:52:55 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/19 18:08:29 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 
-#include "Zombie.hpp"
+#include "Weapon.hpp"
 
-void randomChump( std::string name ) {
-    Zombie rotten_stack(name);
+Weapon::Weapon(std::string type) {
+    this->type_ = type;
     
-    rotten_stack.announce();
+}
+
+Weapon::~Weapon() {}
+
+std::string& Weapon::getType() { return this->type_ }
+
+void Weapon::settype(std::string type) {
+    this->type_ = type;
 }
 
 /* ************************************************************************** */

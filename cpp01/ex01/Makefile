@@ -6,15 +6,15 @@
 #    By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/04/19 14:16:05 by pnolte           ###   ########.fr        #
+#    Updated: 2023/04/19 14:18:14 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = BraiiiiiiinnnzzzZ
+NAME = Moar_brainz!
 
-SRC = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
+SRC = main.cpp zombieHorde.cpp Zombie.cpp
 
 OBJS = $(SRC:.cpp=.o)
 

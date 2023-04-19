@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 21:38:55 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/19 13:41:00 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/19 17:52:33 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/19 18:01:30 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef __HUMANA_H__
+#define __HUMANA_H__
+
 #include <string>
 
-#include "Zombie.hpp"
+#include "Weapon.hpp"
 
-void randomChump( std::string name ) {
-    Zombie rotten_stack(name);
-    
-    rotten_stack.announce();
-}
+class HumanA {
+   public:
+    HumanA();
+    ~HumanA();
+
+    void attack();
+
+   private:
+    Weapon::weapon;
+};
+
+#endif // __HUMANA_H__
 
 /* ************************************************************************** */
