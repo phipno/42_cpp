@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   autonomousReplacer.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 17:52:47 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/20 14:43:04 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/20 16:18:18 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/20 16:47:08 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
+#include <fstream>
 
-#include "HumanB.hpp"
-#include "Weapon.hpp"
+#include "autonomousReplacer.hpp"
 
-HumanB::HumanB( std::string name) : name_(name), type_(NULL) {}
+Foo::Foo(char *input[]) : filename_(input[1]), s1_(input[2]), s2_(input[3]) {}
 
-HumanB::~HumanB( void ) {}
+Foo::~Foo(void) {}
 
-void HumanB::setWeapon(Weapon &type) {
-    this->type_ = &type;
+bool    OpenCopyFile() {
+    ofstream file;
+
+    file.open(this->filename_);
 }
 
-void HumanB::attack( void ) {
-    std::cout << this->name_ << " attacks with their ";
-    std::cout << this->type_->getType() << std::endl;
-}
+bool    AutonomousReplacer(char *input[]) {
+    Foo f = Foo(input);
 
-/* ************************************************************************** */
+    f.OpenCopyFile();
+    return EXIT_SUCCESS;
+}

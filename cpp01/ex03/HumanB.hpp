@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:52:23 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/19 18:10:01 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/04/20 14:44:45 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@
 
 #include "Weapon.hpp"
 
-class HumanA {
+class HumanB {
    public:
-    HumanB();
-    ~HumanB();
+    HumanB( std::string name );
+    ~HumanB( void );
 
-    void attack();
+    void    setWeapon( Weapon &type );
+    void    attack( void );
 
    private:
-    Weapon::weapon;
+    std::string name_;
+    Weapon      *type_;
 };
 
 

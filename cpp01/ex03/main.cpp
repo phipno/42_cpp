@@ -6,9 +6,11 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:52:51 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/19 18:02:59 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/04/20 14:39:03 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <iostream>
 
 #include "HumanA.hpp"
 #include "HumanB.hpp"
@@ -30,6 +32,7 @@ int  main( void ) {
         club.setType("some other type of club");
         jim.attack();
     }
+    system("leaks Unneccessary_violence");
     return 0;
 }
 

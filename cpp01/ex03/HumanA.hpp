@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:52:33 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/19 18:01:30 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/04/20 14:41:42 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 
 class HumanA {
    public:
-    HumanA();
-    ~HumanA();
+    HumanA( std::string name, Weapon &type );
+    ~HumanA( void );
 
-    void attack();
+    void attack( void );
 
    private:
-    Weapon::weapon;
+    std::string name_;
+    Weapon      &type_;
 };
 
 #endif // __HUMANA_H__

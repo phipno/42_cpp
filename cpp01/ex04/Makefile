@@ -6,15 +6,15 @@
 #    By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/19 17:51:40 by pnolte            #+#    #+#              #
-#    Updated: 2023/04/20 14:45:08 by pnolte           ###   ########.fr        #
+#    Updated: 2023/04/20 16:35:19 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = Unneccessary_violence
+NAME = Sed_is_for_losers
 
-SRC = Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
+SRC =  main.cpp autonomousReplacer.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
@@ -22,7 +22,7 @@ COMPILE = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-DEPS = HumanB.hpp HumanA.hpp Weapon.hpp
+DEPS =
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. RULES .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
