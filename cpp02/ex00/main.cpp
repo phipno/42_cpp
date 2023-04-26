@@ -5,24 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 15:07:21 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/26 18:59:09 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/26 19:50:31 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/26 19:51:06 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-#include "Harl.hpp"
+#include "Fixed.hpp"
 
-int main(int argc, char *argv[]) {
-    Harl Foo;
+int main( void ) {
+    Fixed a;
+    Fixed b( a );
+    Fixed c;
 
-    if (argc < 2 || argc > 2) {
-        std::cout << "Usage: ./harlFilter <input>" << std::endl;
-        return EXIT_FAILURE;
-    }
-    Foo.complain(argv[1]);
-    return EXIT_SUCCESS;
+    c = b;
+
+    std::cout << a.getRawBits() << std::endl;
+    std::cout << b.getRawBits() << std::endl;
+    std::cout << c.getRawBits()
 }
-
-/* ************************************************************************** */

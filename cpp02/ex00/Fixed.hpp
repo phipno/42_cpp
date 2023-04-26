@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 15:07:21 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/26 18:59:09 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/26 19:02:16 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/26 19:53:30 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef __FIXED_H__
+#define __FIXED_H__
 
-#include "Harl.hpp"
+class Fixed {
+   public:
+    Fixed();
+    Fixed();
+    ~Fixed();
 
-int main(int argc, char *argv[]) {
-    Harl Foo;
+    Fixed &operator = (const Fixed &other);
 
-    if (argc < 2 || argc > 2) {
-        std::cout << "Usage: ./harlFilter <input>" << std::endl;
-        return EXIT_FAILURE;
-    }
-    Foo.complain(argv[1]);
-    return EXIT_SUCCESS;
-}
+   private:
+    int                 i;
+    static const int    sci;
+};
+
+#endif // __FIXED_H__
 
 /* ************************************************************************** */
