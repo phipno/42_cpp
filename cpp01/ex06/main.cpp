@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   autonomousReplacer.hpp                             :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 16:18:33 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/26 14:36:23 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/26 15:07:21 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/26 17:08:19 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __AUTONOMOUSREPLACER_H__
-#define __AUTONOMOUSREPLACER_H__
+#include <iostream>
 
-#include <string>
+#include "Harl.hpp"
 
-class Foo {
-   public:
-    Foo( char *input[] );
-    ~Foo( void );
+int main(int argc, char *argv[]) {
+    Harl Foo;
 
-    int         OpenCopy();
-    void        TheStrChanger();
-    int         TheFileCreater();
-    std::string GetStr() const;
-
-   private:
-    std::string filename_;
-    std::string s1_;
-    std::string s2_;
-    std::string str_;
-};
-
-int AutonomousReplacer( char *input[] );
-
-#endif // __AUTONOMOUSREPLACER_H__
+    if (argc < 2 || argc > 2) {
+        std::cout << "Usage: ./harlFilter <input>" << std::endl;
+        return EXIT_FAILURE;
+    }
+    else
+        Foo.complain(argv[1]);
+    return EXIT_SUCCESS;
+}
 
 /* ************************************************************************** */

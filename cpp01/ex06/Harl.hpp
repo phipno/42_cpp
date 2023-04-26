@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   autonomousReplacer.hpp                             :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 16:18:33 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/26 14:36:23 by pnolte           ###   ########.fr       */
+/*   Created: 2023/04/26 15:07:24 by pnolte            #+#    #+#             */
+/*   Updated: 2023/04/26 16:58:27 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __AUTONOMOUSREPLACER_H__
-#define __AUTONOMOUSREPLACER_H__
+#ifndef __HARL_H__
+#define __HARL_H__
 
 #include <string>
 
-class Foo {
+class Harl {
    public:
-    Foo( char *input[] );
-    ~Foo( void );
+    Harl();
+    ~Harl();
 
-    int         OpenCopy();
-    void        TheStrChanger();
-    int         TheFileCreater();
-    std::string GetStr() const;
+    void    complain( std::string level );
 
    private:
-    std::string filename_;
-    std::string s1_;
-    std::string s2_;
-    std::string str_;
+    void    debug( void );
+    void    info( void );
+    void    warning( void );
+    void    error( void );
+
+    void    (Harl::*fa_[4])();
+
+    std::string sa_[4];
+
 };
 
-int AutonomousReplacer( char *input[] );
-
-#endif // __AUTONOMOUSREPLACER_H__
+#endif // __HARL_H__
 
 /* ************************************************************************** */
