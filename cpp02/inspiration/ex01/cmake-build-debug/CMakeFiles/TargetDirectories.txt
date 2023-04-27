@@ -1,3 +1,0 @@
-/Users/dhamdiev/corecode/cpp_modules/cpp_02/ex01/cmake-build-debug/CMakeFiles/ex01.dir
-/Users/dhamdiev/corecode/cpp_modules/cpp_02/ex01/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/dhamdiev/corecode/cpp_modules/cpp_02/ex01/cmake-build-debug/CMakeFiles/rebuild_cache.dir
