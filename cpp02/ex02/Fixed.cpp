@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:02:24 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/27 20:23:23 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/04/28 20:18:00 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,103 +16,136 @@
 #include "Fixed.hpp"
 
 Fixed::Fixed() : fp_(0) {
-    std::cout << "Deafault constructor called" << std::endl;
+    // std::cout << "Deafault constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &src) {
-    std::cout << "Copy constructor called" << std::endl;
+    // std::cout << "Copy constructor called" << std::endl;
     *this = src;
 }
 
 Fixed::Fixed(const int value) {
-    std::cout << "Int constructor called " << std::endl;
+    // std::cout << "Int constructor called " << std::endl;
     this->fp_ = value << this->fractional_bits_;
 }
 
 Fixed::Fixed(const float value) {
-    std::cout << "Float constructor called" << std::endl;
+    // std::cout << "Float constructor called" << std::endl;
     this->fp_ = (roundf(value * (1 << this->fractional_bits_)));
 }
 
 Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
+    // std::cout << "Destructor called" << std::endl;
 }
 
 Fixed& Fixed::operator = (const Fixed &src) {
     if (this != &src) {
-        std::cout << "Copy assignment operattor called" << std::endl;
-        this->fp_ = src.getRawBits();
+        // std::cout << "Copy assignment operattor called" << std::endl;
+        this->fp_ = src.fp_;
     }
     return *this;
 }
 
-Fixed& Fixed::operator > (const Fixed &src)
-{
+bool Fixed::operator > (const Fixed &src) {
+    if (this->fp_ > src.fp_)
+        return true;
+    else
+        return false;
+}
+
+bool Fixed::operator < (const Fixed &src) {
+    if (this->fp_ < src.fp_)
+        return true;
+    else
+        return false;
+}
+
+bool Fixed::operator >= (const Fixed &src) {
+    if (this->fp_ >= src.fp_)
+        return true;
+    else
+        return false;
+}
+
+bool Fixed::operator <= (const Fixed &src){
+    if (this->fp_ <= src.fp_)
+        return true;
+    else
+        return false;
+}
+
+bool Fixed::operator == (const Fixed &src){
+    if (this->fp_ == src.fp_)
+        return true;
+    else
+        return false;
+}
+
+bool Fixed::operator != (const Fixed &src) {
+    if (this->fp_ != src.fp_)
+        return true;
+    else
+        return false;
 
 }
 
-Fixed& Fixed::operator < (const Fixed &src)
-{
+Fixed Fixed::operator + (const Fixed &src) {
+    Fixed result;
 
+    result.fp_ = this->fp_ + src.fp_;
+    return result;
 }
 
-Fixed& Fixed::operator >= (const Fixed &src)
-{
+Fixed Fixed::operator - (const Fixed &src) {
+    Fixed result;
 
+    result.fp_ = this->fp_ - src.fp_;
+    return result;
 }
 
-Fixed& Fixed::operator <= (const Fixed &src)
-{
+Fixed Fixed::operator * (const Fixed &src) {
+    Fixed result;
+    result = this->toFloat() * src.toFloat();
 
+    return result;
 }
 
-Fixed& Fixed::operator == (const Fixed &src)
-{
+Fixed Fixed::operator / (const Fixed &src) {
+    Fixed result;
+    result = this->toFloat() / src.toFloat();
 
+    return result;
 }
 
-Fixed& Fixed::operator != (const Fixed &src)
-{
+//prefix decrement
+Fixed& Fixed::operator -- () {
+    int n = this->fp_;
 
+    n--;
+    this->fp_ = n;
+    return *this;
 }
 
-Fixed& Fixed::operator + (const Fixed &src)
-{
+//postfix decrement
+Fixed Fixed::operator -- (int) {
+    Fixed tmp = *this;
+
+    this->fp_--;
+    return tmp;
 }
 
-Fixed& Fixed::operator - (const Fixed &src)
-{
-
+//prefix increment
+Fixed& Fixed::operator ++ () {
+    this->fp_++;
+    return *this;
 }
 
-Fixed& Fixed::operator * (const Fixed &src)
-{
+//postfix increment
+Fixed Fixed::operator ++ (int) {
+    Fixed tmp = *this;
 
-}
-
-Fixed& Fixed::operator / (const Fixed &src)
-{
-
-}
-
-Fixed& Fixed::operator -- ()
-{
-
-}
-
-Fixed& Fixed::operator -- (int i)
-{
-
-}
-
-Fixed& Fixed::operator ++ ()
-{
-
-}
-
-Fixed& Fixed::operator ++ (int i)
-{
-
+    this->fp_++;
+    return tmp;
 }
 
 
@@ -130,24 +163,32 @@ void Fixed::setRawBits(int const raw) {
     this->fp_ = raw;
 }
 
-int Fixed::min(Fixed &rfp1, Fixed &rfp2)
-{
-
+Fixed& Fixed::min(Fixed &rfp1, Fixed &rfp2) {
+    if (rfp1.fp_ < rfp2.fp_)
+        return rfp1;
+    else
+        return rfp2;
 }
 
-int Fixed::min(const Fixed &rfp1, const Fixed &rfp2)
-{
-
+Fixed& Fixed::min(const Fixed &rfp1, const Fixed &rfp2) {
+    if (rfp1.fp_ < rfp2.fp_)
+        return (Fixed&)rfp1;
+    else
+        return (Fixed&)rfp2;
 }
 
-int Fixed::max(Fixed &rfp1, Fixed &rfp2)
-{
-
+Fixed& Fixed::max(Fixed &rfp1, Fixed &rfp2) {
+    if (rfp1.fp_ > rfp2.fp_)
+        return rfp1;
+    else
+        return rfp2;
 }
 
-int Fixed::max(const Fixed &rfp1, const Fixed &rfp2)
-{
-
+Fixed& Fixed::max(const Fixed &rfp1, const Fixed &rfp2) {
+    if (rfp1.fp_ > rfp2.fp_)
+        return (Fixed&)rfp1;
+    else
+        return (Fixed&)rfp2;
 }
 
 std::ostream& operator << (std::ostream &os, const Fixed &src) {

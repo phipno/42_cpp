@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:02:16 by pnolte            #+#    #+#             */
-/*   Updated: 2023/04/27 20:28:36 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/04/28 19:09:57 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ class Fixed {
 
     ~Fixed();
 
-    bool operator = (const Fixed &src);
+    Fixed& operator = (const Fixed &src);
+
     bool operator > (const Fixed &src);
     bool operator < (const Fixed &src);
     bool operator >= (const Fixed &src);
@@ -38,26 +39,26 @@ class Fixed {
     Fixed operator / (const Fixed &src);
 
     Fixed& operator ++ ();
-    Fixed& operator ++ (int i);
+    Fixed operator ++ (int);
     Fixed& operator -- ();
-    Fixed& operator -- (int i);
+    Fixed operator -- (int);
 
     float   toFloat( void ) const;
     int     toInt( void ) const;
     int     getRawBits( void ) const;
     void    setRawBits( int const raw );
 
-    static int     min(Fixed &src1, Fixed &src2);
-    static int     min(const Fixed &src1, const Fixed &src2);
-    static int     max(Fixed &src1, Fixed &src2);
-    static int     max(const Fixed &scr1, const Fixed &src2);
+    static Fixed& min(Fixed &src1, Fixed &src2);
+    static Fixed& min(const Fixed &src1, const Fixed &src2);
+    static Fixed& max(Fixed &src1, Fixed &src2);
+    static Fixed& max(const Fixed &scr1, const Fixed &src2);
 
    private:
     int                 fp_;
     static const int    fractional_bits_ = 8;
 };
 
-std::ostream& operator << (std::ostream &os, const Fixed &src);
+std::ostream&   operator << (std::ostream &os, const Fixed &src);
 
 #endif // __FIXED_H__
 
