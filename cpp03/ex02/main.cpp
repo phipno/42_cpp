@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:19:20 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/03 19:13:15 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/04 11:00:26 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+
 
 static void TestClapTrap( void ) {
     ClapTrap copy("clap");
@@ -59,6 +61,24 @@ static void TestScavTrap( void ) {
     def.guardGate();
 }
 
+static void TestFragTrap( void ) {
+    FragTrap copy("clap");
+    FragTrap copy_assign("trap");
+    FragTrap def;
+    FragTrap clap(copy);
+    FragTrap trap = copy_assign;
+
+    trap.attack("clap");
+    clap.takeDamage(trap.getAttackDamage());
+    clap.beRepaired(trap.getAttackDamage());
+    for (int i = 0; i < 4; i++) {
+        clap.attack("trap");
+        trap.takeDamage(clap.getAttackDamage());
+    }
+    trap.beRepaired(1);
+    def.highFivesGuys();
+}
+
 int main() {
     std::cout << "CLAP TRAP CLAP TRAP CLAP TRAP CLAP TRAP CLAP TRAP CLAP TRAP CLAP TRAP CLAP TRAP CLAP TRAP\n";
     TestClapTrap();
@@ -66,6 +86,10 @@ int main() {
     std::cout << "SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP\n";
     TestScavTrap();
     std::cout << "SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP SCAV TRAP\n\n";
+    std::cout << "FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP\n";
+    TestFragTrap();
+    std::cout << "FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP FRAG TRAP\n\n";
+
 
 }
 

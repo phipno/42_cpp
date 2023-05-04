@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:07:34 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/04 15:23:31 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:50:32 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 #include "ScavTrap.hpp"
 #include "ClapTrap.hpp"
 
-ScavTrap::ScavTrap(void) {
+ScavTrap::ScavTrap(void) : ClapTrap() {
     std::cout << "ScavTrap Constructor upgraded a ClapTrap\n";
-    this->name_ = "default";
     this->hit_points_ = 100;
     this->energy_points_ = 50;
     this->attack_damage_ = 20;
 }
 
-ScavTrap::ScavTrap(std::string name) {
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
     std::cout << "ScavTrap Name Constructor upgraded a ClapTrap\n";
     this->name_ = name;
     this->hit_points_ = 100;
@@ -59,7 +58,7 @@ void ScavTrap::attack(const std::string& target) {
         std::cout << "🔋 " << this->name_
         << " feeling tired, maybe his battery run out of juice 🔋\n";
     else {
-        std::cout << "🗡️ " << this->name_
+        std::cout << "🗡️  " << this->name_
                   << " stabs, stabs, stabs and stabs "
                   << target << std::endl;
         this->energy_points_--;

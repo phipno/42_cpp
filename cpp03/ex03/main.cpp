@@ -6,37 +6,36 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:19:20 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/03 19:01:28 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:01:30 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
-int main() {
-    ClapTrap copy("clap");
-    ClapTrap copy_assign("trap");
-    ClapTrap def;
-    ClapTrap clap(copy);
-    ClapTrap trap = copy_assign;
+static void TestDiamondTrap( void ) {
+    DiamondTrap clap("clap");
+    DiamondTrap trap("trap");
 
-    trap.attack(trap.getAttackDamage());
-    clap.takeDamage(0);
-    for (int i = 0; i < 10; i++)
-    {
+    trap.attack("clap");
+    clap.takeDamage(trap.getAttackDamage());
+    clap.beRepaired(trap.getAttackDamage());
+    for (int i = 0; i < 5; i++) {
         clap.attack("trap");
-        trap.takeDamage(1);
+        trap.takeDamage(clap.getAttackDamage());
     }
     trap.beRepaired(1);
-    def.attack("crap");
-    clap.takeDamage(9);
-    clap.beRepaired(5);
-    clap.attack("default");
-    def.attack("clap");
-    clap.takeDamage(9);
-    def.attack("clap");
-    clap.takeDamage(9);
-    clap.beRepaired(1);
-    clap.attack("default");
+    clap.whoAmI();
+}
+
+int main() {
+    std::cout << "DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP\n";
+    TestDiamondTrap();
+    std::cout << "DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP DIAMOND TRAP\n";
 }
 
 /* ************************************************************************** */
