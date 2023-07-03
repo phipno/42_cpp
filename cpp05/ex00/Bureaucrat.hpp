@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 10:18:58 by pnolte            #+#    #+#             */
-/*   Updated: 2023/06/29 14:57:03 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/03 14:10:21 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ class Bureaucrat
      void               incrementGrade(void); 
      void               decrementGrade(void);  
      
+     class GradeTooHighException : public std::exception {
+        public:
+         const char *exception() const throw()
+         { return "The Grade is too damn high!"; }
+     };
+     class GradeTooLowException : public std::exception {
+        public:
+         const char *exception() const throw()
+         { return "The Grade is too damn low!"; }
+     };
+
     private:
      std::string const   _name;
      int                 _grade;
