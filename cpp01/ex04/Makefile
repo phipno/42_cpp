@@ -6,13 +6,13 @@
 #    By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/19 17:51:40 by pnolte            #+#    #+#              #
-#    Updated: 2023/04/26 16:06:13 by pnolte           ###   ########.fr        #
+#    Updated: 2023/05/02 19:15:05 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = Sed_is_for_losers
+NAME = sed_is_for_losers
 
 SRC =  main.cpp autonomousReplacer.cpp
 
@@ -22,7 +22,7 @@ COMPILE = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-DEPS = autonomousReplacer
+DEPS = autonomousReplacer.hpp
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. RULES .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 

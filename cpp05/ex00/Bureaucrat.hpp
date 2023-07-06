@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 10:18:58 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/03 14:10:21 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/03 14:43:59 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include <string>
 #include <iostream>
 
-class Bureaucrat
-{
+class Bureaucrat {
     public:
      Bureaucrat();
      Bureaucrat(int grade, std::string name);

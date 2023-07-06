@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:51 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/04 17:09:50 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:33:41 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm() 
  : AForm("Robot Default" , 72, 45), _target("Default") {}
@@ -37,21 +39,23 @@ RobotomyRequestForm& RobotomyRequestForm::operator = (RobotomyRequestForm const 
 }
 
 void RobotomyRequestForm::executeForm() const
-{
-    std::cout << "rRrrRRrrrRRrRrAAAAAaaaAAAAaaaa\n bow bow bow" 
-            << "........ seeesshhhhhh\n rararrarararararararar\n TADA\n";
-    if (std::rand() % 2 == 0)
+{   
+    std::srand(std::time(nullptr));
+    std::cout << "rRrrRRrrrRRrRrAAAAAaaaAAAAaaaa\nbow bow bow" 
+            << "........ seeesshhhhhh\nrararrarararararararar\n           TADA\n";
+    if (std::rand() % 2 + 1 == 1)
         std::cout << this->_target << " has been robotomized successfully\n";
     else {
         std::cout << this->_target << " has been not robotomized failure\n"
                                    << "Self-Destruction activated" << std::endl;
-        for (int i = 10; i >= 0; i--)
+        for (int i = 3; i >= 0; i--)
         {
             std::cout << i << std::endl;
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
         std::cout << "Well" << std::endl;
     }
+    std::cout << std::endl;
 }
 
 std::string RobotomyRequestForm::getTarget(void) const { return this->_target;}

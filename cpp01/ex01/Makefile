@@ -6,7 +6,7 @@
 #    By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/04/26 16:06:30 by pnolte           ###   ########.fr        #
+#    Updated: 2023/04/27 18:19:01 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ DEPS = Zombie.hpp
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(DEPS)
 	$(COMPILE) $(FLAGS) $(OBJS) -o $(NAME)
 
 .cpp.o:

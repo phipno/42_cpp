@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:06:58 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/04 17:48:28 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/06 18:22:58 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "ClapTrap.hpp"
 
 DiamondTrap::DiamondTrap(void)
-    : ClapTrap("default_clab_name"), ScavTrap(), FragTrap() {
+    : ClapTrap("default_clab_name"), ScavTrap("default"), FragTrap("default") {
     std::cout << "DiamondTrap Constructor fused a ScavTrap and a FragTrap\n";
     this->name_ = "default";
     this->hit_points_ = FragTrap::hit_points_;
@@ -31,6 +31,7 @@ DiamondTrap::DiamondTrap(std::string name)
     : ClapTrap(name + "_clab_name"), ScavTrap(name), FragTrap(name) {
     std::cout << "DiamondTrap Name Constructor fused a ScavTrap and a FragTrap\n";
     this->name_ = name;
+    this->ClapTrap::setName(name + "_clab_name");
     this->hit_points_ = FragTrap::hit_points_;
     this->energy_points_ = ScavTrap::energy_points_;
     this->attack_damage_ = FragTrap::attack_damage_;
@@ -58,7 +59,9 @@ DiamondTrap& DiamondTrap::operator = (const DiamondTrap &src) {
 
 void DiamondTrap::whoAmI(void) {
     std::cout << "🤖 I'am " << this->name_ << " and also "
-              << ClapTrap::name_ << ScavTrap::name_ << FragTrap::name_ << std::endl;
+              << ClapTrap::name_ << std::endl;
 }
+
+std::string DiamondTrap::getName(void) { return this->name_; }
 
 /* ************************************************************************** */

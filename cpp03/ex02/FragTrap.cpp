@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:28:06 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/04 15:40:44 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/06 18:27:56 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ FragTrap& FragTrap::operator = (const FragTrap &src) {
 }
 
 void FragTrap::highFivesGuys(void) {
-    std::cout << "✋ Secret handshake! BOTSSS ✋\n";
+    std::cout << "✋ " << this->name_ << "says: Secret handshake! BOTSSS ✋\n";
 }
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:07:34 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/04 15:23:31 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/06 18:26:27 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void ScavTrap::attack(const std::string& target) {
 
 void ScavTrap::guardGate(void) {
     std::cout << "🧙 " << this->name_
-              << "says: You shall not pass!🛡️\n";
+              << " says: You shall not pass!🛡️\n";
 }
 
 /* ************************************************************************** */

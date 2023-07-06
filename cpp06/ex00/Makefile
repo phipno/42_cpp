@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+         #
+#    By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/04/27 18:19:30 by pnolte           ###   ########.fr        #
+#    Updated: 2023/07/06 16:25:30 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = recreated
+NAME = scalar
 
-SRC = Account.cpp tests.cpp
+SRC = main.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
@@ -22,7 +22,7 @@ COMPILE = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-DEPS = Account.hpp
+DEPS = 
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. RULES .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
@@ -41,18 +41,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-
-#.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. TESTS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
-
-test1: all
-	./$(NAME)
-
-test2: all
-	./$(NAME)
-
-test3: all
-	./$(NAME)
-
-.PHONY: all clean fclean re test1 test2 test3
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#

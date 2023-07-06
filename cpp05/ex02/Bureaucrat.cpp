@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 10:18:58 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/04 17:34:18 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:11:17 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void Bureaucrat::executeForm(AForm const &form)
     }
 }
 
-std::string const Bureaucrat::getName(void) const { return _name; }
+std::string const Bureaucrat::getName(void) const { return this->_name; }
 
-int Bureaucrat::getGrade(void) const { return _grade; }
+int Bureaucrat::getGrade(void) const { return this->_grade; }
 
 /* ************************************************************************** */

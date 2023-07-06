@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:19:42 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/04 17:42:25 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/06 18:23:00 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ class ScavTrap : virtual public ClapTrap {
 
     void        attack( const std::string& target );
     void        guardGate( void );
-
-   protected:
-
-   private:
-
 };
 
 #endif // __SCAVTRAP_H__

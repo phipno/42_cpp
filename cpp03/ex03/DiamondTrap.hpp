@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:06:58 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/04 17:42:32 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/06 18:05:24 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ class DiamondTrap : public ScavTrap, public FragTrap {
 
     DiamondTrap&    operator = ( const DiamondTrap &src );
 
-    void            whoAmI( void );
+    void        whoAmI( void );
+    std::string getName( void );
 
    private:
     std::string     name_;

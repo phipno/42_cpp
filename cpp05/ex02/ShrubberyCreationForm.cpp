@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:59 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/04 17:38:30 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:23:38 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator = (ShrubberyCreationForm 
 
 void ShrubberyCreationForm::executeForm() const
 {
+    std::cout << "Trees being planted\n";
     std::ofstream File(this->_target + "_shrubbery");
     File << "       oxoxoo    ooxoo\n"
          << "      ooxoxo oo  oxoxooo\n"
@@ -51,7 +52,7 @@ void ShrubberyCreationForm::executeForm() const
          << "            |  |\n"
          << "            |  |\n"
          << "     ______/____\\____\n"
-         << "  Christopher S McDowell" << std::endl;
+         << "  Christopher S McDowell\n" << std::endl;
     File.close();
 }
 

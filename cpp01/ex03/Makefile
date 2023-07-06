@@ -6,13 +6,13 @@
 #    By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/19 17:51:40 by pnolte            #+#    #+#              #
-#    Updated: 2023/04/20 14:45:08 by pnolte           ###   ########.fr        #
+#    Updated: 2023/05/02 19:10:18 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = Unneccessary_violence
+NAME = unneccessary_violence
 
 SRC = Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
 

@@ -6,13 +6,13 @@
 #    By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/07/04 17:36:58 by pnolte           ###   ########.fr        #
+#    Updated: 2023/07/06 13:42:40 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = Ahhhhhhh
+NAME = Bureaucraty
 
 SRC = main.cpp AForm.cpp Bureaucrat.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp
 
@@ -20,7 +20,7 @@ OBJS = $(SRC:.cpp=.o)
 
 COMPILE = c++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 DEPS = AForm.hpp Bureaucrat.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp PresidentialPardonForm.hpp
 
@@ -36,6 +36,7 @@ $(NAME): $(OBJS) $(DEPS)
 
 clean:
 	rm -rf $(OBJS)
+	rm -rf Tree_Shrubbery
 
 fclean: clean
 	rm -rf $(NAME)

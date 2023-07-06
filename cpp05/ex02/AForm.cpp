@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:32:58 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/04 17:34:29 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:36:40 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void AForm::execute(Bureaucrat const &executor) const
 {
     try {
         if (this->_signed == true && executor.getGrade() <= this->_grade_exec)
-            this->execute(executor);
+            this->executeForm();
         else
             throw AForm::GradeTooLowException();
     }

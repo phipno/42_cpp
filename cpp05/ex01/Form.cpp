@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:32:58 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/03 17:32:44 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/04 14:00:43 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int Form::getGradeExec(void) const { return _grade_exec; }
 void Form::beSigned(Bureaucrat &Bureaucrat)
 {
     try {
-        if (Bureaucrat.getGrade() > this->_grade_sign)
+        if (Bureaucrat.getGrade() >= this->_grade_sign)
             throw Form::GradeTooLowException();
         else
             this->_signed = true;

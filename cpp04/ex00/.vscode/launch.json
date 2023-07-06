@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/pnolte/projects/private_git/cpp/cpp05/ex00",
-      "program": "/Users/pnolte/projects/private_git/cpp/cpp05/ex00/build/Debug/outDebug"
+      "cwd": "/Users/pnolte/projects/private_git/cpp/cpp04/ex00",
+      "program": "/Users/pnolte/projects/private_git/cpp/cpp04/ex00/build/Debug/outDebug"
     }
   ]
 }

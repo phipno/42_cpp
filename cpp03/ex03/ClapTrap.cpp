@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:19:26 by pnolte            #+#    #+#             */
-/*   Updated: 2023/05/04 17:40:02 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/05/06 18:07:44 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <iostream>
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 
 ClapTrap::ClapTrap(void)
@@ -47,6 +50,10 @@ ClapTrap& ClapTrap::operator = (const ClapTrap &src) {
 }
 
 int ClapTrap::getAttackDamage(void) { return this->attack_damage_; }
+
+void ClapTrap::setName(std::string new_name) {
+    this->name_ = new_name;
+}
 
 void ClapTrap::attack(const std::string& target) {
     if (this->hit_points_ <= 0)
