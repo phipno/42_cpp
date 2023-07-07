@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:26:07 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/06 16:26:51 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/07 12:44:30 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <string>
 
-static class ScalarConverter
+class ScalarConverter
 {
     public:
         ScalarConverter(void);
