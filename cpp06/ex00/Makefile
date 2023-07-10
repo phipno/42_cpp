@@ -6,7 +6,7 @@
 #    By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/07/06 16:25:30 by pnolte           ###   ########.fr        #
+#    Updated: 2023/07/10 11:13:17 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,15 @@
 
 NAME = scalar
 
-SRC = main.cpp
+SRC = main.cpp Converter.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
 COMPILE = c++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
-DEPS = 
+DEPS = Converter.hpp
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. RULES .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 

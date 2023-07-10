@@ -6,99 +6,148 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:33:12 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/07 17:15:21 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/10 13:29:25 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalar.hpp"
+#include "Converter.hpp"
 
 #include <string>
 #include <iostream>
 
-ScalarConverter::ScalarConverter(void)
-{
-    
+ScalarConverter::ScalarConverter(std::string input) : _input(input) {
+    for (int i = 0; i < 4; i++)
+        this->_prints[i] = "NULL";
 }
 
-ScalarConverter::ScalarConverter(ScalarConverter const &copy)
-{
-    
+ScalarConverter::ScalarConverter(ScalarConverter const &Src) {
+    *this = Src;
 }
 
-ScalarConverter::~ScalarConverter(void)
-{
-    
-}
+ScalarConverter::~ScalarConverter(void) {}
 
-ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs) {
-    if (this != &rhs)
-        this->_input = rhs._input;
+ScalarConverter &ScalarConverter::operator=(ScalarConverter const &Src) {
+    if (this != &Src) {
+        for (int i = 0; i < 4; i++)
+            this->_prints[i] = "NULL";
+        this->_input = Src._input;
+    }
     return (*this);
 }
 
-static void _convertChar(std::string const &input)
-{
-    
-}
-
-static void _convertInt(std::string const &input)
-{
-    
-}
-
-static void _convertFloat(std::string const &input)
-{
-    
-}
-
-static void _convertDouble(std::string const &input)
-{
-    
-}
-
-static int _doubleOrFloat(std::string const &input)
-{
-    if ()
-        return 2;
+void ScalarConverter::convertChar() {
+    int check = std::atoi(this->_input.c_str());
+     
+    if (check >= 32 && check <= 126 ) {
+        this->_prints[0] = "NULL";
+        this->_char = check;
+    }
     else
-        return 3;
+        this->_prints[0] = "Non displayable";
+        
 }
 
-static int _decideType(std::string const &input)
+void ScalarConverter::convertInt() {
+    if (_input.length() == 1 && _input[0] >= 32 && _input[0] <= 126) {
+        this->_float = _input[0];
+    }
+    else 
+        this->_int = std::atoi(_input.c_str());
+}
+
+void ScalarConverter::convertFloat() {
+    if (_input.length() == 1 && _input[0] >= 32 && _input[0] <= 126) {
+        this->_float = _input[0];
+    }
+    else {
+        try {
+            this->_float = std::stof(_input.c_str());
+        }
+        catch (std::exception& e) {
+            this->_prints[2] = "Non displayable";
+        }    
+    }
+}
+
+void ScalarConverter::convertDouble() {
+    if (_input.length() == 1 && _input[0] >= 32 && _input[0] <= 126) {
+        this->_float = _input[0];
+    }
+    else {    
+        try {
+            this->_double = std::stof(_input.c_str());
+        }
+        catch (std::exception& e) {
+            this->_prints[3] = "Non displayable";
+        }
+    }
+}
+
+int ScalarConverter::doubleOrFloat()
 {
-    bool is_int = true;
+    for (int i = 0; i < _input[i] != '\0'; i++) {
+        if (_input[i] == 'f' || _input[i] == 'F') {
+            convertFloat();
+            return 2;
+        }
+    }
+    convertDouble();
+    return 3;
+}
+
+int ScalarConverter::decideType()
+{
+    bool    is_int = true;
     
-    if (input.length() == 1 && input[0] >= 32 && input[0] <= 126)
-        return (0);
-    for (int i = 0; i < input.length(); i++)
-    {
-        if (input[i] == '.' && is_int == true)
+    if (_input.length() == 1 && _input[0] >= 32 && _input[0] <= 126) {
+        this->_char = _input[0];
+        return 0;
+    }
+    else
+        _prints[0] = "Non displayable";
+    for (int i = 0; _input[i] != '\0'; i++) {
+        if (_input[i] == '.' && is_int == true)
         {
             is_int = false;
-            return doubleOrFloat(input);
-        } 
+            return doubleOrFloat();
+        }
     }
-    if (is_int == true)
-        return (1);
+    if (is_int == true) {
+        convertInt();
+        return 1;
+    }
+    return 5;
 }
 
-void ScalarConverter::convert(std::string const &input) {
-    int type = _decideType(input);
+void ScalarConverter::convert() {
+    int type = decideType();
     if (type != 0)
-        _convertChar(input);
+        convertChar();
     if (type != 1)
-        _convertInt(input);
+        convertInt();
     if (type != 2)
-        _convertFloat(input);
+        convertFloat();
     if (type != 3)
-        _convertDouble(input);
-    std::cout << "char: " << _char << std::endl;
-    std::cout << "int: " << _int << std::endl;
-    std::cout << "float: " << _float << std::endl;
-    std::cout << "double: " << _double << std::endl;
+        convertDouble();
 }
 
 void ScalarConverter::print(void) const {
+    if (this->_prints[0] == "NULL")
+        std::cout << "char: " << _char << std::endl;
+    else
+        std::cout << "char: " << this->_prints[0] << std::endl;
+    if (this->_prints[1] == "NULL")
+        std::cout << "int: " << _int << std::endl;
+    else
+        std::cout << "int: " << this->_prints[1] << std::endl;
+    if (this->_prints[2] == "NULL")
+        std::cout << "float: " << _float << "f" << std::endl;
+    else
+        std::cout << "float: " << this->_prints[2] << std::endl;
+    if (this->_prints[3] == "NULL")
+        std::cout << "double: " << _double << std::endl;
+    else
+        std::cout << "double: " << this->_prints[3] << std::endl;
     
 }
 
