@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:33:12 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/10 13:29:25 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/10 18:37:55 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,140 +15,99 @@
 #include <string>
 #include <iostream>
 
-ScalarConverter::ScalarConverter(std::string input) : _input(input) {
-    for (int i = 0; i < 4; i++)
-        this->_prints[i] = "NULL";
-}
+#define T_Char 0
+#define T_Int 1
+#define T_Float 2
+#define T_Double 3
+#define FAIL 4
 
-ScalarConverter::ScalarConverter(ScalarConverter const &Src) {
-    *this = Src;
-}
+static int detectType(std::string input, tValues **Values) {
+    bool is_int = true;
 
-ScalarConverter::~ScalarConverter(void) {}
-
-ScalarConverter &ScalarConverter::operator=(ScalarConverter const &Src) {
-    if (this != &Src) {
-        for (int i = 0; i < 4; i++)
-            this->_prints[i] = "NULL";
-        this->_input = Src._input;
+    if (input.length() == 1 && input[0] >= 32 && input[1] <= 126) {
+        return T_Char;
     }
-    return (*this);
-}
-
-void ScalarConverter::convertChar() {
-    int check = std::atoi(this->_input.c_str());
-     
-    if (check >= 32 && check <= 126 ) {
-        this->_prints[0] = "NULL";
-        this->_char = check;
+    if (input == "-inff" || input == "+inff" || input == "inff")
+    {
+        Values->prints[T_Float] = input;
+        Values->prints[T_Double] = input.erase(input.length() - 1);
+        return T_Float;
     }
-    else
-        this->_prints[0] = "Non displayable";
-        
-}
-
-void ScalarConverter::convertInt() {
-    if (_input.length() == 1 && _input[0] >= 32 && _input[0] <= 126) {
-        this->_float = _input[0];
+    if (input == "-inf" || input == "+inf" || input == "inf")
+    {
+        Values->prints[T_Double] = input;
+        Values->prints[T_Float] = input + "f";
+        return T_Double;
     }
-    else 
-        this->_int = std::atoi(_input.c_str());
-}
-
-void ScalarConverter::convertFloat() {
-    if (_input.length() == 1 && _input[0] >= 32 && _input[0] <= 126) {
-        this->_float = _input[0];
-    }
-    else {
-        try {
-            this->_float = std::stof(_input.c_str());
-        }
-        catch (std::exception& e) {
-            this->_prints[2] = "Non displayable";
-        }    
-    }
-}
-
-void ScalarConverter::convertDouble() {
-    if (_input.length() == 1 && _input[0] >= 32 && _input[0] <= 126) {
-        this->_float = _input[0];
-    }
-    else {    
-        try {
-            this->_double = std::stof(_input.c_str());
-        }
-        catch (std::exception& e) {
-            this->_prints[3] = "Non displayable";
-        }
-    }
-}
-
-int ScalarConverter::doubleOrFloat()
-{
-    for (int i = 0; i < _input[i] != '\0'; i++) {
-        if (_input[i] == 'f' || _input[i] == 'F') {
-            convertFloat();
-            return 2;
-        }
-    }
-    convertDouble();
-    return 3;
-}
-
-int ScalarConverter::decideType()
-{
-    bool    is_int = true;
-    
-    if (_input.length() == 1 && _input[0] >= 32 && _input[0] <= 126) {
-        this->_char = _input[0];
-        return 0;
-    }
-    else
-        _prints[0] = "Non displayable";
-    for (int i = 0; _input[i] != '\0'; i++) {
-        if (_input[i] == '.' && is_int == true)
-        {
+        return T_Double;
+    for (int i = 0; input[i] != '\0'; i++) {
+        if (input[i] == '.') {
             is_int = false;
-            return doubleOrFloat();
         }
     }
-    if (is_int == true) {
-        convertInt();
-        return 1;
-    }
-    return 5;
+    if (is_int == false && input[input.length()] == 'f')
+        return T_Float;
+    else if (is_int == false)
+        return T_Double;
+    else if (is_int == true)
+        return T_Int;
+    else
+        return FAIL;
 }
 
-void ScalarConverter::convert() {
-    int type = decideType();
-    if (type != 0)
-        convertChar();
-    if (type != 1)
-        convertInt();
-    if (type != 2)
-        convertFloat();
-    if (type != 3)
-        convertDouble();
-}
-
-void ScalarConverter::print(void) const {
-    if (this->_prints[0] == "NULL")
-        std::cout << "char: " << _char << std::endl;
-    else
-        std::cout << "char: " << this->_prints[0] << std::endl;
-    if (this->_prints[1] == "NULL")
-        std::cout << "int: " << _int << std::endl;
-    else
-        std::cout << "int: " << this->_prints[1] << std::endl;
-    if (this->_prints[2] == "NULL")
-        std::cout << "float: " << _float << "f" << std::endl;
-    else
-        std::cout << "float: " << this->_prints[2] << std::endl;
-    if (this->_prints[3] == "NULL")
-        std::cout << "double: " << _double << std::endl;
-    else
-        std::cout << "double: " << this->_prints[3] << std::endl;
+// static char convertChar(const std::string input, std::string *prints, const int type) {
+//     char    value;
     
+//     return value;
+// }
+
+// static int  convertInt(const std::string input, std::string *prints, const int type) {
+//     int value;
+    
+//     return value;
+// }
+
+// static float    convertFloat(const std::string input, std::string *prints, const int type){
+//     int value;
+    
+//     return value;
+// }
+
+// static double   convertDouble(const std::string input, std::string *prints, const int type){
+//     int the_double;
+    
+//     return the_double;
+// }
+
+int ScalarConverter::convert(std::string input) {
+    tValues     Values;
+    int         type;
+    
+    for (int i = 0; i < 4; i++)
+        Values.prints[i] = "NULL";
+    type = detectType(input, Values.prints);
+    std::cout << Values.prints[2] << std::endl;
+    std::cout << Values.prints[3] << std::endl;
+    if (type == T_Char)
+        Values.the_char = input[0];    
+    else if (type == T_Int)
+        Values.the_int = std::stoi(input);
+    else if (type == T_Float)
+        Values.the_float = std::stof(input);
+    else if (type == T_Double)
+        Values.the_double = std::stod(input);
+    else if (type == FAIL)
+        return 1;
+    return 0;
+    
+    // if (type != T_Char)
+    //     Values.the_char = convertChar(input, prints, type);    
+    // else if (type != T_Int)
+    //     Values.the_int = convertInt(input, prints, type);
+    // else if (type != T_Float)
+    //     Values.the_float = convertFloat(input, prints, type);
+    // else if (type != T_Double)
+    //     Values.the_double = convertDouble(input, prints, type);
 }
 
 /* ************************************************************************** */
