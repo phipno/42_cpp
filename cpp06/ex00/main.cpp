@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:03:40 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/10 17:45:04 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/11 15:37:37 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         std::cout << "Usage: ./convert [input]" << std::endl;
-        return (1);
+        return EXIT_FAILURE;
     }
-    ScalarConverter::convert(argv[1]);
+    return ScalarConverter::convert(argv[1]);
 }
 
 /* ************************************************************************** */

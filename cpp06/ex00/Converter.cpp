@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:33:12 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/10 18:37:55 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/11 17:26:28 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,22 @@
 #define T_Double 3
 #define FAIL 4
 
-static int detectType(std::string input, tValues **Values) {
+static int detectType(std::string const &input) {
     bool is_int = true;
 
-    if (input.length() == 1 && input[0] >= 32 && input[1] <= 126) {
+    if (input.length() == 1 && input[0] >= 48 && input[0] <= 57)
+        return T_Int;
+    if (input.length() == 1 && input[0] >= 32 && input[0] <= 126)
         return T_Char;
-    }
-    if (input == "-inff" || input == "+inff" || input == "inff")
-    {
-        Values->prints[T_Float] = input;
-        Values->prints[T_Double] = input.erase(input.length() - 1);
+    if (input == "-inff" || input == "+inff" || input == "nanf")
         return T_Float;
-    }
-    if (input == "-inf" || input == "+inf" || input == "inf")
-    {
-        Values->prints[T_Double] = input;
-        Values->prints[T_Float] = input + "f";
-        return T_Double;
-    }
+    if (input == "-inf" || input == "+inf" || input == "nan")
         return T_Double;
     for (int i = 0; input[i] != '\0'; i++) {
-        if (input[i] == '.') {
+        if (input[i] == '.')
             is_int = false;
-        }
+        if (std::string::npos != input.find_first_not_of("0123456789+-f.", 0))
+            return FAIL;
     }
     if (is_int == false && input[input.length()] == 'f')
         return T_Float;
@@ -55,59 +48,83 @@ static int detectType(std::string input, tValues **Values) {
         return FAIL;
 }
 
-// static char convertChar(const std::string input, std::string *prints, const int type) {
-//     char    value;
-    
-//     return value;
-// }
+static bool isInf(std::string const &input, int const type) {
+    if ((type == T_Double || type == T_Float) 
+        && (input == "-inff" || input == "+inff" || input == "nanf" 
+        || input == "-inf" || input == "+inf" || input == "nan"))
+        return true;
+    return false;
+}
 
-// static int  convertInt(const std::string input, std::string *prints, const int type) {
-//     int value;
-    
-//     return value;
-// }
+static void printTheShit(std::string input, char const the_char, 
+    long int const the_int, float const the_float, double const the_double, int const type) {
+    if (the_char >= 32 && the_char <= 126 && the_int <= 126 && the_int >= 32)
+        std::cout << "Char: " << the_char << std::endl;
+    else if (isInf(input, type))
+        std::cout << "Char: impossible" << std::endl;
+    else
+        std::cout << "Char: Non displayable" << std::endl; 
+    if (isInf(input, type) && type == T_Double) {
+        std::cout << "Int: impossible" << std::endl;
+        std::cout << "Float: " << input << "f" << std::endl;        
+        std::cout << "Double: " << input << std::endl;
+    }
+    else if (isInf(input, type) && type == T_Float) {
+        std::cout << "Int: impossible" << std::endl;
+        std::cout << "Float: " << input << std::endl;
+        input.pop_back();
+        std::cout << "Double: " << input << std::endl;
+    }
+    else {
+        if (the_int <= 2147483647 && the_int >= -2147483648)
+            std::cout << "Int: " << the_int << std::endl;
+        else
+            std::cout << "Int: Non displayable" << std::endl;
+        std::cout << "Float: " << the_float << "f" << std::endl;        
+        std::cout << "Double: " << the_double << std::endl;
+    }
+}
 
-// static float    convertFloat(const std::string input, std::string *prints, const int type){
-//     int value;
-    
-//     return value;
-// }
+int ScalarConverter::convert(std::string const &input) {
+    char        the_char;
+    long int    the_int;
+    float       the_float;
+    double      the_double;
+    int         type = detectType(input);
 
-// static double   convertDouble(const std::string input, std::string *prints, const int type){
-//     int the_double;
-    
-//     return the_double;
-// }
-
-int ScalarConverter::convert(std::string input) {
-    tValues     Values;
-    int         type;
-    
-    for (int i = 0; i < 4; i++)
-        Values.prints[i] = "NULL";
-    type = detectType(input, Values.prints);
-    std::cout << Values.prints[2] << std::endl;
-    std::cout << Values.prints[3] << std::endl;
-    if (type == T_Char)
-        Values.the_char = input[0];    
-    else if (type == T_Int)
-        Values.the_int = std::stoi(input);
-    else if (type == T_Float)
-        Values.the_float = std::stof(input);
-    else if (type == T_Double)
-        Values.the_double = std::stod(input);
-    else if (type == FAIL)
-        return 1;
-    return 0;
-    
-    // if (type != T_Char)
-    //     Values.the_char = convertChar(input, prints, type);    
-    // else if (type != T_Int)
-    //     Values.the_int = convertInt(input, prints, type);
-    // else if (type != T_Float)
-    //     Values.the_float = convertFloat(input, prints, type);
-    // else if (type != T_Double)
-    //     Values.the_double = convertDouble(input, prints, type);
+    if (type == FAIL) {
+        std::cerr << "Error: Invalid value" << std::endl;
+        return EXIT_FAILURE;
+    }
+    std::cout << type << std::endl;
+    switch (type) {
+        case T_Char:
+            the_char = input[0];
+            the_int = static_cast<long int>(the_char);
+            the_float = static_cast<float>(the_char);
+            the_double = static_cast<double>(the_char);
+            break;
+        case T_Int:
+            the_int = std::atol(input.c_str());
+            the_char = static_cast<char>(the_int);
+            the_float = static_cast<float>(the_int);
+            the_double = static_cast<double>(the_int);
+            break;
+        case T_Float:
+            the_float = static_cast<float>(std::atof(input.c_str()));
+            the_int = static_cast<long int>(the_float);
+            the_char = static_cast<char>(the_float);
+            the_double = static_cast<double>(the_float);
+            break;
+        case T_Double:
+            the_double = std::atof(input.c_str());
+            the_int = static_cast<long int>(the_double);
+            the_float = static_cast<float>(the_double);
+            the_char = static_cast<char>(the_double);
+            break;
+    }
+    printTheShit(input, the_char, the_int, the_float, the_double, type);
+    return EXIT_SUCCESS;
 }
 
 /* ************************************************************************** */

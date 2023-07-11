@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:26:07 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/10 18:38:29 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/11 15:35:27 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,10 @@
 
 #include <string>
 
-class sValues {
-    public:
-    std::string prints[4];
-    char        the_char;
-    int         the_int;
-    float       the_float;
-    double      the_double;
-} tValues;
 
 class ScalarConverter {
     public:
-     static int convert(std::string input);
+     static int convert(std::string const &input);
      
     private:
      ScalarConverter(void);
