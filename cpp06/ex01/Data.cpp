@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 16:03:40 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/12 12:31:26 by pnolte           ###   ########.fr       */
+/*   Created: 2023/07/12 13:01:19 by pnolte            #+#    #+#             */
+/*   Updated: 2023/07/12 15:17:01 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Converter.hpp"
+#include "Data.hpp"
 
-#include <iostream>
-#include <cstdlib> //for EXIT_FAILURE
+Data::Data() : _data(0) {}
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        std::cout << "Usage: ./convert [input]" << std::endl;
-        return EXIT_FAILURE;
-    }
-    return ScalarConverter::convert(argv[1]);
+Data::Data(int data) : _data(data) {}
+
+Data::~Data() {}
+
+Data::Data(Data const &Src) {
+    *this = Src;
 }
+
+
+Data& Data::operator=(const Data &Src) {
+    if (this != &Src)
+        this->_data = Src._data;
+    return *this;
+}
+
+int Data::getData() { return this->_data; }
 
 /* ************************************************************************** */
