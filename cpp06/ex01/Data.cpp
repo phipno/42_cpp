@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:01:19 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/12 13:34:37 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/12 14:32:08 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Data::Data(Data const &Src) {
 
 Data& Data::operator=(const Data &Src) {
     if (this != &Src)
-        this->_data = Src.getData();
+        this->_data = Src._data;
     return *this;
 }
 

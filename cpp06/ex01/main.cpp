@@ -6,21 +6,44 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:03:40 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/12 12:31:26 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/12 15:15:16 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Converter.hpp"
+#include "Data.hpp"
+#include "Serializer.hpp"
 
 #include <iostream>
 #include <cstdlib> //for EXIT_FAILURE
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        std::cout << "Usage: ./convert [input]" << std::endl;
-        return EXIT_FAILURE;
-    }
-    return ScalarConverter::convert(argv[1]);
+
+int	main( void )
+{
+    Data    Prism(123);
+
+    // serialize
+    uintptr_t   test = Serializer::serialize(&Prism);
+
+    // deserialize
+    Data    *deserializedPrism = Serializer::deserialize(test);
+    std::cout << std::endl << std::endl;
+
+    // Result should be the same!
+    // (Serialization/deserialization keep the same value inside data and same address)
+
+    std::cout << "ADRESSES COMPARED:" << std::endl;
+    std::cout << "----------------------------" << std::endl;
+    std::cout << "Data1 address: "<< &Prism << std::endl;
+    std::cout << "Data2 address: "<< deserializedPrism << std::endl;
+    std::cout << std::endl << std::endl;
+
+    std::cout << "VALUES INSIDE DATA COMPARED:" << std::endl;
+    std::cout << "----------------------------" << std::endl;
+    std::cout << "Data1 value: " << Prism.getData() << std::endl;
+    std::cout << "Data2 value: " << (*deserializedPrism).getData() << std::endl;
+    std::cout << std::endl << std::endl;
+
+    return (0);
 }
 
 /* ************************************************************************** */
