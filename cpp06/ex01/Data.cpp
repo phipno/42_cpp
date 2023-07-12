@@ -6,13 +6,13 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:01:19 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/12 14:32:08 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/12 15:17:01 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Data.hpp"
 
-Data::Data() {}
+Data::Data() : _data(0) {}
 
 Data::Data(int data) : _data(data) {}
 

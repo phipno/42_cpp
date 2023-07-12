@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:33:12 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/11 17:26:28 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/07/12 12:36:25 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 #define T_Char 0
 #define T_Int 1
@@ -72,7 +73,7 @@ static void printTheShit(std::string input, char const the_char,
     else if (isInf(input, type) && type == T_Float) {
         std::cout << "Int: impossible" << std::endl;
         std::cout << "Float: " << input << std::endl;
-        input.pop_back();
+        input.erase(input.length() - 1);
         std::cout << "Double: " << input << std::endl;
     }
     else {

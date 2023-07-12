@@ -5,22 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 16:03:40 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/12 12:31:26 by pnolte           ###   ########.fr       */
+/*   Created: 2023/07/12 18:05:22 by pnolte            #+#    #+#             */
+/*   Updated: 2023/07/12 18:14:42 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Converter.hpp"
+#include "Base.hpp"
 
-#include <iostream>
-#include <cstdlib> //for EXIT_FAILURE
+#include <cstdlib>
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        std::cout << "Usage: ./convert [input]" << std::endl;
-        return EXIT_FAILURE;
-    }
-    return ScalarConverter::convert(argv[1]);
+int main() {
+    Base *Prism;
+
+    Prism = genrate();
+    identify(Prism);
+    identify(*Prism);
+    delete Prism;
+    return EXIT_SUCCESS;
 }
 
 /* ************************************************************************** */
