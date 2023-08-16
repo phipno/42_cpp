@@ -20,7 +20,7 @@ OBJS = $(SRC:.cpp=.o)
 
 COMPILE = c++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -std=c++98 
 
 DEPS = Bureaucrat.hpp Form.hpp
 

@@ -38,7 +38,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator = (ShrubberyCreationForm 
 void ShrubberyCreationForm::executeForm() const
 {
     std::cout << "Trees being planted\n";
-    std::ofstream File(this->_target + "_shrubbery");
+    std::ofstream File((this->_target + "_shrubbery").c_str());
     File << "       oxoxoo    ooxoo\n"
          << "      ooxoxo oo  oxoxooo\n"
          << "     oooo xxoxoo ooo ooox\n"
