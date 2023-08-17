@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:01:39 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/15 20:16:52 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/16 16:06:16 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ class Span{
    Span   &operator=(Span const &src);
    
    void   addNumber(int new_nbr);
-   void   addNumbers(std::vector<int>::const_iterator first,
-                      std::vector<int>::const_iterator last);
+   void   addRandomNumbers(size_t iterates, int range_min, int range_max);
    int    shortestSpan();
    int    longestSpan();
 	 

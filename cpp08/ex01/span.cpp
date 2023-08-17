@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:01:22 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/15 20:19:33 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/16 16:25:10 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <algorithm>
 #include <limits>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 Span::Span() : max_size(0) {}
 
@@ -48,19 +50,21 @@ void Span::addNumber(int new_nbr) {
   }
 }
 
-void Span::addNumbers(std::vector<int>::const_iterator first,
-                      std::vector<int>::const_iterator last) {
-  for (std::vector<int>::const_iterator it = first; it != last; it++) {
-    try {
-      if (this->nbr_vec.size() <= this->max_size)
+void Span::addRandomNumbers(size_t iterates, int range_min, int range_max) {
+  std::srand(std::time(NULL));
+  try {
+    for (size_t i = 0; i < iterates; i++) {
+      if (this->nbr_vec.size() >= this->max_size) {
         throw std::length_error("Vector is already full");
+        break ;
+      }
       else
-        this->nbr_vec.push_back(*it);
-    }
-    catch (const std::exception &ex) {
-      std::cerr << "Error: " << ex.what() << std::endl;
+        this->nbr_vec.push_back(range_min + (std::rand() % (range_max - range_min + 1)));
     }
   }                        
+  catch (const std::exception &ex) {
+    std::cerr << "Error: " << ex.what() << std::endl;
+  }
 }
 
 int Span::shortestSpan() {
@@ -88,31 +92,6 @@ int Span::shortestSpan() {
   }
   return smallest_span;
 }
-
-// int Span::shortestSpan() {
-  // int smallest_span = std::numeric_limits<int>::max();
-  // int current_span = -1;
-  
-  // try {
-  //   if (this->nbr_vec.size() <= 1)
-  //     throw std::length_error("Vector needs more than 1 Element");
-  //   else {
-  //     for (size_t i = 0; i < this->nbr_vec.size(); i++) {
-  //       for (size_t j = i + 1; j < this->nbr_vec.size(); j++) {
-  //         current_span = std::abs(this->nbr_vec[i] - this->nbr_vec[j]);
-  //         smallest_span = std::min(current_span, smallest_span);
-  //         if (smallest_span == 0)
-  //           return smallest_span;
-  //       }
-  //     }
-  //   }
-  // }
-  // catch (const std::exception &ex) {
-  //   std::cerr << "Error: " << ex.what() << std::endl;
-  //   return -1;
-  // } 
-  // return smallest_span;
-// }
 
 int Span::longestSpan() {
   try {
