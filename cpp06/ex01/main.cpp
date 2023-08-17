@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phipno <phipno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:03:40 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/12 15:15:16 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/17 10:26:54 by phipno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Serializer.hpp"
 
 #include <iostream>
-#include <cstdlib> //for EXIT_FAILURE
+#include <cstdlib>
 
 
 int	main( void )

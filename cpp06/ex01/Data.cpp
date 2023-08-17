@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Data.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phipno <phipno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:01:19 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/12 15:17:01 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/17 10:27:49 by phipno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ Data::~Data() {}
 Data::Data(Data const &Src) {
     *this = Src;
 }
-
 
 Data& Data::operator=(const Data &Src) {
     if (this != &Src)

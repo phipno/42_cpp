@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Converter.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phipno <phipno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:33:12 by pnolte            #+#    #+#             */
-/*   Updated: 2023/07/12 12:36:25 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/17 10:53:01 by phipno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int ScalarConverter::convert(std::string const &input) {
         std::cerr << "Error: Invalid value" << std::endl;
         return EXIT_FAILURE;
     }
-    std::cout << type << std::endl;
+    std::cout << "Type is " << type << std::endl;
     switch (type) {
         case T_Char:
             the_char = input[0];
