@@ -14,8 +14,6 @@
 #include "AForm.hpp"
 
 #include <string>
-#include <thread>
-#include <chrono>
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -40,10 +38,10 @@ RobotomyRequestForm& RobotomyRequestForm::operator = (RobotomyRequestForm const 
 
 void RobotomyRequestForm::executeForm() const
 {   
-    std::srand(std::time(nullptr));
+    std::srand(std::time(NULL));
     std::cout << "rRrrRRrrrRRrRrAAAAAaaaAAAAaaaa\nbow bow bow" 
             << "........ seeesshhhhhh\nrararrarararararararar\n           TADA\n";
-    if (std::rand() % 2 + 1 == 1)
+    if (std::rand() % 2 == 0)
         std::cout << this->_target << " has been robotomized successfully\n";
     else {
         std::cout << this->_target << " has been not robotomized failure\n"
@@ -51,7 +49,6 @@ void RobotomyRequestForm::executeForm() const
         for (int i = 3; i >= 0; i--)
         {
             std::cout << i << std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
         std::cout << "Well" << std::endl;
     }
