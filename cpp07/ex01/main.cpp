@@ -40,3 +40,4 @@ int main( void ) {
     iter(char_array, char_arr_len, Printer);
     std::cout << std::endl;
 }
+/* ************************************************************************** */

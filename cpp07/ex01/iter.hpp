@@ -16,7 +16,7 @@
 #include <iostream>
 
 template <typename T>
-void iter(T *array, size_t arr_len, void (*func)(T)) {
+void iter(T *array, size_t arr_len, void (*func)(T const &array)) {
     for (size_t i = 0; i < arr_len; i++) {
         func(array[i]);
     }

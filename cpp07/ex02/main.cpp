@@ -18,13 +18,15 @@
 int main(void) {
     
     std::cout << "INT_ARRAY" << std::endl;
+    std::cout << "=--=--=--=--=--==--=--=--=--=--=\n";
     Array<int> int_array = Array<int>(3);
     for (size_t i = 0; i < int_array.size(); i++)
         std::cout << int_array[i] << std::endl;
         
-    std::cout << "=--=--=--=--=--=\n" << std::endl;
+    std::cout << "=--=--=--=--=--==--=--=--=--=--=\n" << std::endl << std::endl << std::endl;
     
     std::cout << "CHAR_ARRAY" << std::endl;
+    std::cout << "=--=--=--=--=--==--=--=--=--=--=\n";
     Array<char> char_array = Array<char>(3);
     for (size_t i = 0; i < char_array.size(); i++) 
         char_array[i] = 'D';
@@ -35,9 +37,10 @@ int main(void) {
     for (size_t i = 0; i < copy_a.size(); i++) 
         std::cout << copy_a[i] << std::endl;
 
-    std::cout << "=--=--=--=--=--=\n" << std::endl;
+    std::cout << "=--=--=--=--=--==--=--=--=--=--=\n" << std::endl << std::endl << std::endl;
     
     std::cout << "STR_ARRAY" << std::endl;
+    std::cout << "=--=--=--=--=--==--=--=--=--=--=\n";
     Array<std::string> str_array = Array<std::string>(3);
     for (size_t i = 0; i < str_array.size(); i++) 
         str_array[i] = "ollo";
@@ -47,5 +50,7 @@ int main(void) {
     Array<std::string> copy_array(str_array);
     for (size_t i = 0; i < str_array.size(); i++) 
         std::cout << str_array[i] << std::endl;
-    system("leaks Array");
+    std::cout << "=--=--=--=--=--==--=--=--=--=--=\n" << std::endl << std::endl << std::endl;
+
+    // system("leaks Array");
 }

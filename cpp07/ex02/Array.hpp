@@ -31,15 +31,13 @@ class Array {
      }
 
      T &operator[](size_t i) const {
-        if (i > this->_size)
+        if (i >= this->_size)
             throw std::out_of_range("Boy your Index be out of range");
         return this->_a[i];
      }
      
      Array<T> &operator=(Array<T> &src) {        
         if (this != &src) {
-            if (this->_size > 0)
-                delete [] this->_a;
             this->_size = src._size;
             this->_a = new T[src._size];    
             for (size_t i = 0; i < src._size; i++)
