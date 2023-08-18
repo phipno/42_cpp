@@ -6,13 +6,13 @@
 #    By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/08/01 14:43:19 by pnolte           ###   ########.fr        #
+#    Updated: 2023/08/18 14:16:57 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = whatever
+NAME = MutantStack
 
 SRC = main.cpp
 
@@ -22,7 +22,7 @@ COMPILE = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
-DEPS = whatever.hpp
+DEPS = MutantStack.hpp
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. RULES .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
