@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:01:39 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/16 16:06:16 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/21 09:37:31 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class Span{
    void   addRandomNumbers(size_t iterates, int range_min, int range_max);
    int    shortestSpan();
    int    longestSpan();
+
+   void   printer();
 	 
   private:
    unsigned int			max_size;

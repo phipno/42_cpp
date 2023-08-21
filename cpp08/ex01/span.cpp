@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:01:22 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/16 16:25:10 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/21 09:39:23 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,14 @@ int Span::longestSpan() {
     std::cerr << "Error: " << ex.what() << std::endl;
     return -1;
   }
+}
+
+void Span::printer() {
+    std::vector<int>::iterator it;
+    for (it = this->nbr_vec.begin(); it != this->nbr_vec.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 }
 
 /* ************************************************************************** */

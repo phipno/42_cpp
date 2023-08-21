@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:59:40 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/18 14:59:41 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/21 09:47:19 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ class MutantStack : public std::stack<T> {
       std::stack<T>::operator=(src); 
     return *this; 
    }
-   
-
    
    typedef typename std::stack<T>::container_type::iterator iterator;
    typedef typename std::stack<T>::container_type::const_iterator const_iterator;

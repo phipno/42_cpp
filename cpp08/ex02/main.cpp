@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 12:50:37 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/18 15:01:39 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/21 09:50:08 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int main() {
   MutantStack<int> mstack;
   
+  std::cout << std::endl << "S U B J E C T   T E S T I N G" << std::endl;
   mstack.push(5);
   mstack.push(17);
   std::cout << "Top element: " << mstack.top() << std::endl;
@@ -39,10 +40,12 @@ int main() {
   }
   
   // test stack implemantation 
+  std::cout << std::endl << "S T A C K   T E S T I N G" << std::endl;
   std::stack<int> s(mstack);
   std::cout << "Stack top element and size: " << s.top() << " | " << s.size() << std::endl;
   
   //test copy constructor
+  std::cout << std::endl << "C O P Y  T E S T I N G" << std::endl;
   MutantStack<int> mstackCopy(mstack);
   std::cout << "Copied stack contents:" << std::endl;
   for (MutantStack<int>::iterator cit = mstackCopy.begin(); cit != mstackCopy.end(); ++cit) {
@@ -50,6 +53,7 @@ int main() {
   }
   
   //Test assignment operator
+  std::cout << std::endl << "A S S I G N M E N T  T E S T I N G" << std::endl;
   MutantStack<int> mstackAssign;
   mstackAssign.push(99);
   mstackAssign.push(88);
@@ -60,11 +64,12 @@ int main() {
     std::cout << *cit << std::endl;
   }
     
-  //test empty() and clear()
+  //test empty() and swap()
+  std::cout << std::endl << "EMPTY/SWAP   T E S T I N G" << std::endl;
   MutantStack<int> empty;
   std::cout << "Is stack empty? " << (empty.empty() ? "yes" : "no") << std::endl;
   empty.swap(mstack);
-  std::cout << "Is stack empty? " << (empty.empty() ? "yes" : "no") << std::endl;
+  std::cout << "Is stack empty? " << (empty.empty() ? "yes" : "no") << std::endl << std::endl;
   return 0;
 }
 /* ************************************************************************** */
