@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 12:50:37 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/21 09:50:08 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/21 10:01:05 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,10 @@ int main() {
     std::cout << *cit << std::endl;
   }
     
-  //test empty() and swap()
+  //test empty()
   std::cout << std::endl << "EMPTY/SWAP   T E S T I N G" << std::endl;
   MutantStack<int> empty;
   std::cout << "Is stack empty? " << (empty.empty() ? "yes" : "no") << std::endl;
-  empty.swap(mstack);
-  std::cout << "Is stack empty? " << (empty.empty() ? "yes" : "no") << std::endl << std::endl;
   return 0;
 }
 /* ************************************************************************** */

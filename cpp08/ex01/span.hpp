@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:01:39 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/21 09:37:31 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/21 10:00:06 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define __SPAN_H__
 
 #include <vector>
+#include <cstddef> // for size_t
 
 class Span{
   public:
