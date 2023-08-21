@@ -6,7 +6,7 @@
 #    By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/08/18 15:16:19 by pnolte           ###   ########.fr        #
+#    Updated: 2023/08/21 16:28:54 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = btc
 
-SRC = main.cpp
+SRC = main.cpp BitcoinExchange.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
@@ -22,7 +22,7 @@ COMPILE = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-DEPS = easyfind.hpp
+DEPS = BitcoinExchange.hpp
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. RULES .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
