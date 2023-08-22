@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 10:21:22 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/21 22:06:11 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:30:41 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,35 @@ bool validateDateDate(std::string Date) {
 
 
 bool validationOfFloation(std::string Line, float nbr) {
-  if (nbr < 0) {
+  if (nbr < 0 && nbr > std::numeric_limits<int>::max()) {
     throw std::runtime_error("Error: not a positive number => " + Line);
     return false;
+  }
+  return true;
+}
+
+void  myBitCoin::readerOfCoins(std::ifstream &File, char delimiter, std::map<std::string, float> &Fill) {
+  std::string Line;
+  std::string Date;
+  float       nbr;
+  size_t      pos;
+  
+  std::getline(File, Line);
+  while (std::getline(File, Line)) {
+    try {
+      if ((pos = Line.find(delimiter)) != std::string::npos) {
+        Date = Line.substr(0, pos);
+        nbr = std::stof(Line.substr(pos + 1));
+        if (validationOfFloation(Line, nbr) && validateDateDate(Date))
+          Fill[Date] = nbr;
+        // std::cout << Date << nbr << std::endl;    
+      }
+      else 
+        throw std::runtime_error("Error: bad input => " + Line);  
+    }
+    catch (std::exception &e) {
+      std::cerr << e.what() << std::endl;
+    }
   }
 }
 
@@ -78,42 +104,14 @@ int myBitCoin::bitcoinEvaluation(std::string const file) {
       std::cerr << "Error: Unable to open: data.csv" << std::endl;
     return EXIT_FAILURE;
   }
-  std::string Line;
-  std::string Date;
-  float       nbr;
-  size_t      pos;
+
+  readerOfCoins(inputFile, '|', this->_Input);
+  readerOfCoins(dataFile, ',', this->_Data);
+
   
-  std::getline(inputFile, Line);
-  while (std::getline(inputFile, Line)) {
-    try {
-      if ((pos = Line.find('|')) != std::string::npos) {
-        Date = Line.substr(0, pos);
-        nbr = std::stof(Line.substr(pos + 1));
-        if (validationOfFloation(Line, nbr) && validateDateDate(Date))
-          this->_Input[Date] = nbr;
-        std::cout << Date << nbr << std::endl;    
-      }
-      else 
-        throw std::runtime_error("Error: bad input => " + Line);  
-    }
-    catch (std::exception &e) {
-      std::cerr << e.what() << std::endl;
-    }
-  }
-  std::getline(dataFile, Line);
-  while (std::getline(dataFile, Line)) {
-    size_t pos = Line.find(',');
-    this->_Data[Line.substr(0, pos)] =  std::stof(Line.substr(pos + 1));
-    std::cout << Line.substr(0, pos) << Line.substr(pos + 1) << std::endl;  
-  }
-  std::map<std::string, float>::iterator pair = _Input.end();
-  std::map<std::string, float>::iterator pair1 = _Input.begin();
-  std::cout << pair1->first << " " << pair1->second << std::endl;
-  std::cout << pair->first << " " << pair->second << std::endl;
-  std::cout << _Data.end()->first << std::endl;
-  std::cout << _Data.end()->second << std::endl;
-  std::cout << _Input.begin()->first << std::endl;
-  std::cout << _Input.begin()->first << std::endl;
+
+  std::cout << this->_Data.begin()->first << this->_Data.begin()->second << std::endl;
+  std::cout << this->_Input.begin()->first << this->_Input.begin()->second << std::endl;
   inputFile.close();
   dataFile.close();
   return 0;

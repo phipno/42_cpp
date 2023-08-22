@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:22:33 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/21 16:10:50 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:29:53 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ class myBitCoin {
    myBitCoin &operator=(const myBitCoin &src);
    ~myBitCoin();
    
-   int bitcoinEvaluation(std::string const file);
+   int    bitcoinEvaluation(std::string const file);
+   void   readerOfCoins(std::ifstream &File, char delimiter, 
+                       std::map<std::string, float> &Fill);
    
   private:
    std::map<std::string, float> _Data;
