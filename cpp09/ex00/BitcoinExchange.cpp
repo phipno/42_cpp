@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 10:21:22 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/22 14:30:41 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/22 16:21:13 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ myBitCoin::myBitCoin(const myBitCoin &src) {
 myBitCoin& myBitCoin::operator=(const myBitCoin &src) {
   if (this != &src) {
     this->_Data = src._Data;
-    this->_Input = src._Input;
   }
   return *this;
 }
@@ -57,31 +56,73 @@ bool validateDateDate(std::string Date) {
   }
 }
 
-
-bool validationOfFloation(std::string Line, float nbr) {
-  if (nbr < 0 && nbr > std::numeric_limits<int>::max()) {
+bool noNegativ(std::string Line, float nbr) {
+  if (nbr < 0) {
     throw std::runtime_error("Error: not a positive number => " + Line);
     return false;
   }
-  return true;
+  else
+    return true;
 }
 
-void  myBitCoin::readerOfCoins(std::ifstream &File, char delimiter, std::map<std::string, float> &Fill) {
+bool noOverThousand(std::string Line, float nbr) {
+  if (nbr > 1000) {
+    throw std::runtime_error("Error: too large a number => " + Line);
+    return false;
+  }
+  else
+    return true;
+}
+
+void  myBitCoin::readerOfCoinPrice(std::ifstream &dataFile) {
   std::string Line;
   std::string Date;
   float       nbr;
   size_t      pos;
   
-  std::getline(File, Line);
-  while (std::getline(File, Line)) {
+  std::getline(dataFile, Line);
+  while (std::getline(dataFile, Line)) {
     try {
-      if ((pos = Line.find(delimiter)) != std::string::npos) {
+      if ((pos = Line.find(',')) != std::string::npos) {
         Date = Line.substr(0, pos);
         nbr = std::stof(Line.substr(pos + 1));
-        if (validationOfFloation(Line, nbr) && validateDateDate(Date))
-          Fill[Date] = nbr;
+        if (validateDateDate(Date) && noNegativ(Line, nbr))
+          this->_Data[Date] = nbr;
         // std::cout << Date << nbr << std::endl;    
       }
+      else 
+        throw std::runtime_error("Error: bad input => " + Line);  
+    }
+    catch (std::exception &e) {
+      std::cerr << e.what() << std::endl;
+    }
+  }
+}
+
+void  myBitCoin::loopMineCoin(std::ifstream &inputFile) {
+  std::string Line;
+  std::string Date;
+  float       nbr;
+  size_t      pos;
+
+  std::getline(inputFile, Line);
+  while (std::getline(inputFile, Line)) {
+    try {
+      if ((pos = Line.find('|')) != std::string::npos) {
+        Date = Line.substr(0, pos);
+        nbr = std::stof(Line.substr(pos + 1));
+        if (validateDateDate(Date) && noNegativ(Line, nbr) 
+            && noOverThousand(Line, nbr)) {
+          std::map<std::string, float>::iterator DataIt = this->_Data.upper_bound(Date);
+          if (DataIt != _Data.end()) {
+            // std::cout << "Input:" << Date << " " << nbr << std::endl;
+            // std::cout << "DataFound: " << DataIt->first << " " << DataIt->second << std::endl;
+            DataIt--;
+            // std::cout << "DataMinus: " << DataIt->first << " " << DataIt->second << std::endl << std::endl;
+            std::cout << Date << " => " << nbr << " = " << DataIt->second * nbr << std::endl;
+          }
+        }
+      } 
       else 
         throw std::runtime_error("Error: bad input => " + Line);  
     }
@@ -105,13 +146,9 @@ int myBitCoin::bitcoinEvaluation(std::string const file) {
     return EXIT_FAILURE;
   }
 
-  readerOfCoins(inputFile, '|', this->_Input);
-  readerOfCoins(dataFile, ',', this->_Data);
+  readerOfCoinPrice(dataFile);
+  loopMineCoin(inputFile);
 
-  
-
-  std::cout << this->_Data.begin()->first << this->_Data.begin()->second << std::endl;
-  std::cout << this->_Input.begin()->first << this->_Input.begin()->second << std::endl;
   inputFile.close();
   dataFile.close();
   return 0;
