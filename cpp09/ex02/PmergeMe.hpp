@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 16:23:41 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/23 14:21:19 by pnolte           ###   ########.fr       */
+/*   Created: 2023/08/23 15:00:15 by pnolte            #+#    #+#             */
+/*   Updated: 2023/08/23 17:10:31 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __RPN_H__
-#define __RPN_H__
+#ifndef __PMERGEME_H__
+#define __PMERGEME_H__
 
-#include <stack>
-#include <string>
+#include <list>
+#include <vector>
 
-class RPN {
+class Sort{
   public:
-   RPN();
-   RPN(const RPN &src);
-   ~RPN();
-   RPN &operator=(const RPN &src);
-   
-   int calculatorRPN(const std::string &Input);
-   
+   Sort();
+   Sort(const Sort &Src);
+   ~Sort();
+   Sort &operator=(const Sort &Src);
+  
+   void  Sort::printThatShit();
+
   private:
-   std::stack<int> _operandStack;
+   std::3<int> _VecNbr;
+   float            _vec_time_sort;
+   std::list<int>   _ListNbr;
+   float            _list_time_sort;  
 };
 
-#endif // __RPN_H__
+#endif // __PMERGEME_H__
 /* ************************************************************************** */

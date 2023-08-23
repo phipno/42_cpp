@@ -6,15 +6,15 @@
 #    By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/08/16 15:25:03 by pnolte           ###   ########.fr        #
+#    Updated: 2023/08/23 14:59:13 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. VARS .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 
-NAME = easyfind
+NAME = PmergeMe
 
-SRC = main.cpp
+SRC = main.cpp PmergeMe.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
@@ -22,7 +22,7 @@ COMPILE = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-DEPS = easyfind.hpp
+DEPS = PmergeMe.hpp
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. RULES .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#
 

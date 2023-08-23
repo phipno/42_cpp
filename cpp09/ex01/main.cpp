@@ -6,72 +6,23 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:45:55 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/22 19:51:32 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/23 14:50:43 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-#include<iostream>
-#include<stack>
-#include<locale>      //for function isalnum()
-using namespace std;
+#include <iostream>
 
-int preced(char ch) {
-   if(ch == '+' || ch == '-') {
-      return 1;              //Precedence of + or - is 1
-   }else if(ch == '*' || ch == '/') {
-      return 2;            //Precedence of * or / is 2
-   }else if(ch == '^') {
-      return 3;            //Precedence of ^ is 3
-   }else {
-      return 0;
-   }
-}
-
-string inToPost(string infix ) {
-   stack<char> stk;
-   stk.push('#');               //add some extra character to avoid underflow
-   string postfix = "";         //initially the postfix string is empty
-   string::iterator it;
-
-   for(it = infix.begin(); it!=infix.end(); it++) {
-      if(isalnum(char(*it)))
-         postfix += *it;      //add to postfix when character is letter or number
-      else if(*it == '(')
-         stk.push('(');
-      else if(*it == '^')
-         stk.push('^');
-      else if(*it == ')') {
-         while(stk.top() != '#' && stk.top() != '(') {
-            postfix += stk.top(); //store and pop until ( has found
-            stk.pop();
-         }
-         stk.pop();          //remove the '(' from stack
-      }else {
-         if(preced(*it) > preced(stk.top()))
-            stk.push(*it); //push if precedence is high
-         else {
-            while(stk.top() != '#' && preced(*it) <= preced(stk.top())) {
-               postfix += stk.top();        //store and pop until higher precedence is found
-               stk.pop();
-            }
-            stk.push(*it);
-         }
-      }
-   }
-
-   while(stk.top() != '#') {
-      postfix += stk.top();        //store and pop until stack is not empty.
-      stk.pop();
-   }
-
-   return postfix;
-}
-
-int main() {
-   string infix = "x^y/(5*z)+2";
-   cout << "Postfix Form Is: " << inToPost(infix) << endl;
+int main(int argc, char *argv[]) {
+  RPN Calclass;
+  
+  if (argc != 2) {
+    std::cout << "Usage: ./RPN [postfix_calculation]" << std::endl;
+    return 1;
+  }
+  Calclass.calculatorRPN(argv[1]);
+  return 0;
 }
 
 /* ************************************************************************** */
