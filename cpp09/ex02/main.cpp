@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phipno <phipno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:59:54 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/23 15:00:27 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/26 01:08:28 by phipno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <vector>
+#include "PmergeMe.hpp"
+
+std::vector<int> mergeInsertionSort(std::vector<int> &A);
+
 int main() {
-  
+  std::vector<int> A = {9, 6, 3, 7, 2, 4, -123, 123, 3};
+  std::vector<int> B = mergeInsertionSort(A);
 }
 
 /* ************************************************************************** */
