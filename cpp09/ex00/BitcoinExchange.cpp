@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 10:21:22 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/22 16:21:13 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/25 13:22:04 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fstream>
 #include <iostream>
 #include <exception>
+#include <cstdlib>
 
 myBitCoin::myBitCoin() {}
 
@@ -85,7 +86,7 @@ void  myBitCoin::readerOfCoinPrice(std::ifstream &dataFile) {
     try {
       if ((pos = Line.find(',')) != std::string::npos) {
         Date = Line.substr(0, pos);
-        nbr = std::stof(Line.substr(pos + 1));
+        nbr = std::atof((Line.substr(pos + 1)).c_str());
         if (validateDateDate(Date) && noNegativ(Line, nbr))
           this->_Data[Date] = nbr;
         // std::cout << Date << nbr << std::endl;    
@@ -110,7 +111,7 @@ void  myBitCoin::loopMineCoin(std::ifstream &inputFile) {
     try {
       if ((pos = Line.find('|')) != std::string::npos) {
         Date = Line.substr(0, pos);
-        nbr = std::stof(Line.substr(pos + 1));
+        nbr = std::atof((Line.substr(pos + 1)).c_str());;
         if (validateDateDate(Date) && noNegativ(Line, nbr) 
             && noOverThousand(Line, nbr)) {
           std::map<std::string, float>::iterator DataIt = this->_Data.upper_bound(Date);
@@ -136,7 +137,7 @@ int myBitCoin::bitcoinEvaluation(std::string const file) {
   std::ifstream inputFile;
   std::ifstream dataFile;
 
-  inputFile.open(file);
+  inputFile.open(file.c_str());
   dataFile.open("data.csv");
   if (!inputFile.is_open() || !dataFile.is_open()) {
     if (!inputFile.is_open())
