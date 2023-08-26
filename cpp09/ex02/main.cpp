@@ -3,21 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phipno <phipno@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:59:54 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/26 01:08:28 by phipno           ###   ########.fr       */
+/*   Updated: 2023/08/26 13:33:08 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector>
+#include <list>
+#include <iostream>
+#include <stdexcept>
+
 #include "PmergeMe.hpp"
 
-std::vector<int> mergeInsertionSort(std::vector<int> &A);
-
-int main() {
-  std::vector<int> A = {9, 6, 3, 7, 2, 4, -123, 123, 3};
-  std::vector<int> B = mergeInsertionSort(A);
+int main(int argc, char *argv[]) {
+  Sort Logo;  
+  
+  std::cout << "Begin: ";
+  for (int i = 1; i < argc; ++i)
+    std::cout << argv[i] << " ";
+  std::cout << std::endl;
+  try {
+    Logo.fordJohnsosMergeInsertSort(argv);
+  }
+  catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
 }
 
 /* ************************************************************************** */

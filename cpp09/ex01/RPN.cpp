@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:23:23 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/23 15:38:44 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/26 14:01:31 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int RPN::calculatorRPN(const std::string &Input) {
     try {
       if (std::isdigit(*It))
         this->_operandStack.push(*It - '0');
-      else if (isOperator(*It)) {
+      else if (isOperator(*It) && this->_operandStack.size() > 1) {
         operand2 = this->_operandStack.top();
         this->_operandStack.pop();
         operand1 = this->_operandStack.top();
         this->_operandStack.pop();
         this->_operandStack.push(operationPerPerPerfomer(*It, operand1, operand2));
       }
-      else if (*It != ' ')
+      else if (*It != ' ') 
         throw(std::invalid_argument("Error"));  
     }
     catch (std::exception const &e) {

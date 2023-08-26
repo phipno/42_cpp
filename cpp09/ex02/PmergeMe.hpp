@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phipno <phipno@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:00:15 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/26 01:08:04 by phipno           ###   ########.fr       */
+/*   Updated: 2023/08/26 13:35:40 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,19 @@ class Sort{
    ~Sort();
    Sort &operator=(const Sort &Src);
   
-   void  printThatShit();
+   void fordJohnsosMergeInsertSort(char *argv[]);
 
   private:
-   std::vector<int> _VecNbr;
+   std::vector<int> _vecNbr;
    float            _vec_time_sort;
-   std::list<int>   _ListNbr;
-   float            _list_time_sort;  
+   std::list<int>   _listNbr;
+   float            _list_time_sort; 
+   int              _straggler;
+   bool             _has_straggler;
+   
+   std::list<int> sortList(std::list<int> &List);
+   std::vector<int> sortVector(std::vector<int> &Vec);
 };
-
-std::vector<int> mergeInsertionSort(std::vector<int> &A);
 
 #endif // __PMERGEME_H__
 /* ************************************************************************** */
