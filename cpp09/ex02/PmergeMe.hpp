@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:00:15 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/27 01:31:21 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/27 10:59:14 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ class Sort{
    std::list<int>   _listNbr;
    float            _list_time_sort; 
    int              _struggler;
-   bool             _has_struggler;
-   
 };
 
 #endif // __PMERGEME_H__
