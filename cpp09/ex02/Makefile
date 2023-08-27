@@ -6,7 +6,7 @@
 #    By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 19:04:28 by pnolte            #+#    #+#              #
-#    Updated: 2023/08/27 14:35:49 by pnolte           ###   ########.fr        #
+#    Updated: 2023/08/27 19:28:09 by pnolte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJS = $(SRC:.cpp=.o)
 
 COMPILE = c++
 
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 DEPS = PmergeMe.hpp
 
 #.~"~._.~"~._.~"~._.~"~.__.~"~._.~"~. RULES .~"~._.~"~.__.~"~._.~"~._.~"~._.~"~.#

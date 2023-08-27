@@ -6,7 +6,7 @@
 /*   By: pnolte <pnolte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:59:59 by pnolte            #+#    #+#             */
-/*   Updated: 2023/08/27 18:17:11 by pnolte           ###   ########.fr       */
+/*   Updated: 2023/08/27 20:12:35 by pnolte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,20 @@
 #include <deque>
 #include <stdexcept>
 #include <algorithm>
+#include <ctime>
 
 Sort::Sort() : _vecNbr(0), _vec_time_sort(0), _dequeNbr(0),
-               _deque_time_sort(0), _struggler(-1), _error(false) {
+               _deque_time_sort(0), _struggler(-1), _error(false),
+               _size(0) {
 }
 
 Sort::Sort(char *argv[]) : _struggler(-1), _error(false) {
   int   tmp;
+  int   size = 1;
   
-  for (int i = 1; argv[i] != NULL; i++) {
+  while(argv[size] != NULL) {
     try {
-      tmp = atoi(argv[i]);   
+      tmp = atoi(argv[size]);   
       if (tmp < 0)
         throw std::invalid_argument("Error: No negativ Number");
       this->_vecNbr.push_back(tmp);
@@ -37,8 +40,10 @@ Sort::Sort(char *argv[]) : _struggler(-1), _error(false) {
     catch (std::exception &e) {
       std::cout << e.what() << std::endl;
       this->_error = true;
-    }  
+    }
+    size++;
   }
+  this->_size = size - 1;
   if (!this->_error && this->_vecNbr.size() != 1 && this->_vecNbr.size() % 2 != 0) {
     this->_struggler = this->_vecNbr.back();
     this->_vecNbr.pop_back();
@@ -68,6 +73,22 @@ void printContainer(T Con) {
   for (typename T::iterator it = Con.begin(); it != Con.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
+}
+
+void Sort::printTester() {
+  for (size_t i = 0; i < _tester.size(); i++)
+    std::cout << _tester[i] << " ";
+  std::cout << std::endl;
+  for (size_t i = 0; i < _tester.size(); i++) {
+    if (_tester[i] != _vecNbr[i]) {
+      std::cout << "failed vec" << std::endl;
+      break ;
+    }
+    if (_tester[i] != _dequeNbr[i]) {
+      std::cout << "failed Degue" << std::endl;
+      break ;
+    }
+  }
 }
 
 std::deque<std::deque<int> > createPairs(const std::deque<int>& Deque) {
@@ -175,46 +196,44 @@ std::vector<int> jacobsthalSequence(const std::vector<int> &Pend) {
 }
 
 std::deque<int> createMain(std::deque<std::deque<int> > &pairDeque, int struggler) {
-  std::deque<int>           Pend;
-  std::deque<int>           Main;
-  std::deque<int>           insertionSequence;
-  std::deque<int>           indexSequence;
-  std::string               Last = "default";
-  std::deque<int>::iterator insertion_pos;
-  int                       nbr;
+  std::deque<int>            Pend;
+  std::deque<int>            Main;
+  std::deque<int>            jacobSequence;
+  std::deque<int>            indexSequence;
+  std::string                Last = "default";
+  size_t                     index = 0;
+  int                        nbr;
   
-  for (size_t i = 0; i < pairDeque.size(); i++) {
+  for (size_t i = 0; i < pairDeque.size(); ++i) {
     Main.push_back(pairDeque[i][0]);
     Pend.push_back(pairDeque[i][1]);
   }
   Main.insert(Main.begin(), Pend[0]);
-  printContainer(Main);
-  indexSequence.push_back(Pend[0]);
-  insertionSequence = jacobsthalSequence(Pend);
+  indexSequence.push_back(1);
+  jacobSequence = jacobsthalSequence(Pend);
   if (pairDeque.size() > 1) {
-    for (std::deque<int>::iterator It = Pend.begin(); It != Pend.end(); ++It) { {
-        if (insertionSequence.size() != 0 && Last != "jacob") {
-          indexSequence.push_back(insertionSequence[0]);
-          nbr = Pend[insertionSequence[0]];
-          insertionSequence.erase(insertionSequence.begin());
-          Last = "jacob";
-          insertion_pos = std::upper_bound(Main.begin(), Main.end(), nbr);
-          Main.insert(insertion_pos, nbr);    
-        }
-        else if (std::distance(Pend.begin(), It) != 0 &&
-              (indexSequence[indexSequence.size() - 1]) != std::distance(Pend.begin(), It)) { 
-            nbr = *It;
-            Last = "not-jacob";
-            insertion_pos = std::upper_bound(Main.begin(), Main.end(), nbr);
-            Main.insert(insertion_pos, nbr); 
-        }
-        std::cout << "It is: " << *It << std::endl;
-      }
+    while (index < Pend.size()) {
+      if (jacobSequence.size() != 0 && Last != "jacob") {
+        indexSequence.push_back(jacobSequence[0]);
+        nbr = Pend[jacobSequence[0] - 1];
+        jacobSequence.erase(jacobSequence.begin());
+        Last = "jacob";
     }
-  }
-  if (struggler != -1) {
-    insertion_pos = std::lower_bound(Main.begin(), Main.end(), struggler);
-    Main.insert(insertion_pos, struggler);
+      else {
+        if (std::find(indexSequence.begin(), indexSequence.end(), index + 1) != indexSequence.end())
+          ++index;
+        nbr = Pend[index];
+        indexSequence.push_back(index + 1);
+        Last = "not-jacob";
+      }
+      std::deque<int>::iterator it = std::upper_bound(Main.begin(), Main.end(), nbr);
+      Main.insert(it, nbr);
+      ++index;
+    }
+    if (struggler != -1) {
+      std::deque<int>::iterator it = std::upper_bound(Main.begin(), Main.end(), struggler);
+      Main.insert(it, struggler);
+    }
   }
   return Main;
 }
@@ -222,10 +241,10 @@ std::deque<int> createMain(std::deque<std::deque<int> > &pairDeque, int struggle
 std::vector<int> createMain(std::vector<std::vector<int> > &pairVec, int struggler) {
   std::vector<int>            Pend;
   std::vector<int>            Main;
-  std::vector<int>            insertionSequence;
+  std::vector<int>            jacobSequence;
   std::vector<int>            indexSequence;
   std::string                 Last = "default";
-  std::vector<int>::iterator  insertion_pos;
+  size_t                      index = 0;
   int                         nbr;
   
   for (size_t i = 0; i < pairVec.size(); ++i) {
@@ -233,75 +252,71 @@ std::vector<int> createMain(std::vector<std::vector<int> > &pairVec, int struggl
     Pend.push_back(pairVec[i][1]);
   }
   Main.insert(Main.begin(), Pend[0]);
-  indexSequence.push_back(Pend[0]);
-  insertionSequence = jacobsthalSequence(Pend);
+  indexSequence.push_back(1);
+  jacobSequence = jacobsthalSequence(Pend);
   if (pairVec.size() > 1) {
-    for (std::vector<int>::iterator It = Pend.begin(); It != Pend.end(); ++It) { {
-        if (insertionSequence.size() != 0 && Last != "jacob") {
-          indexSequence.push_back(insertionSequence[0]);
-          nbr = Pend[insertionSequence[0]];
-          insertionSequence.erase(insertionSequence.begin());
-          Last = "jacob";
-          insertion_pos = std::upper_bound(Main.begin(), Main.end(), nbr);
-          Main.insert(insertion_pos, nbr);    
-        }
-        else if (std::distance(Pend.begin(), It) != 0 &&
-              (indexSequence[indexSequence.size() - 1]) != std::distance(Pend.begin(), It)) { 
-          nbr = *It;
-          Last = "not-jacob";
-          insertion_pos = std::upper_bound(Main.begin(), Main.end(), nbr);
-          Main.insert(insertion_pos, nbr);    
-        }
-      }
+    while (index < Pend.size()) {
+      if (jacobSequence.size() != 0 && Last != "jacob") {
+        indexSequence.push_back(jacobSequence[0]);
+        nbr = Pend[jacobSequence[0] - 1];
+        jacobSequence.erase(jacobSequence.begin());
+        Last = "jacob";
     }
-  }
-  if (struggler != -1) {
-    insertion_pos = std::lower_bound(Main.begin(), Main.end(), struggler);
-    Main.insert(insertion_pos, struggler);
+      else {
+        if (std::find(indexSequence.begin(), indexSequence.end(), index + 1) != indexSequence.end())
+          ++index;
+        nbr = Pend[index];
+        indexSequence.push_back(index + 1);
+        Last = "not-jacob";
+      }
+      std::vector<int>::iterator it = std::upper_bound(Main.begin(), Main.end(), nbr);
+      Main.insert(it, nbr);
+      ++index;
+    }
+    if (struggler != -1) {
+      std::vector<int>::iterator it = std::upper_bound(Main.begin(), Main.end(), struggler);
+      Main.insert(it, struggler);
+    }
   }
   return Main;
 }
 
 void Sort::fordJohnsosMergeInsertSort() {  
   if (!this->_error) {
+    const std::clock_t v_start = std::clock();
     if (this->_vecNbr.size() > 1) {
       std::vector<std::vector<int> > pairVec = createPairs(this->_vecNbr);
       sortEachPair(pairVec);
       sortByLargerValue(pairVec, pairVec.size());
       this->_vecNbr = createMain(pairVec, this->_struggler);
+      const std::clock_t v_end = std::clock();
       if (std::is_sorted(this->_vecNbr.begin(), this->_vecNbr.end())) {
-        this->_vec_time_sort = 1;  
+        this->_vec_time_sort = (v_end - v_start);  
         std::cout << "After Vector:  ";
         printContainer(this->_vecNbr);
-        std::cout << "Time to process a range of " << this->_vecNbr.size() 
-        << " elements with std::[vector] : " << this->_vec_time_sort << std::endl;
+        std::cout << "Time to process a range of " << this->_size  
+        << " elements with std::[vector] : " << this->_vec_time_sort 
+        << "ms" << std::endl;
       }
     }
     if (this->_dequeNbr.size() > 1) {
+      const std::clock_t d_start = std::clock();
       std::deque<std::deque<int> > pairDeque = createPairs(this->_dequeNbr);
-      for (size_t i = 0; i < pairDeque.size(); i++) {
-        std::cout << i << ". [" << pairDeque[i][0] << " , " << pairDeque[i][1] << "]   "; 
-      }
-      std::cout << std::endl;
       sortEachPair(pairDeque);
       sortByLargerValue(pairDeque, pairDeque.size());
       this->_dequeNbr = createMain(pairDeque, this->_struggler);
+      const std::clock_t d_end = std::clock();
       if (std::is_sorted(this->_dequeNbr.begin(), this->_dequeNbr.end())) {
-        this->_deque_time_sort = 1;
+        this->_deque_time_sort = (d_end - d_start);  
         std::cout << "After Deque:  ";
         printContainer(this->_dequeNbr);
-        std::cout << "Time to process a range of " << this->_dequeNbr.size() 
-        << " elements with std::[deque] : " << this->_deque_time_sort << std::endl;   
+        std::cout << "Time to process a range of " << this->_size 
+        << " elements with std::[deque] : " << this->_deque_time_sort 
+        << "ms" << std::endl;   
       }
     }
-    // for (size_t i = 0; i < _tester.size(); i++) {
-    //   if (_tester[i] != _vecNbr[i])
-    //     std::cout << "failed vec" << std::endl;
-    //   if (_tester[i] != _dequeNbr[i])
-    //     std::cout << "failed Degue" << std::endl;
-    // }
   }
 }
-  
+
 /* ************************************************************************** */
 
