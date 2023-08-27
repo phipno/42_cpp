@@ -133,6 +133,13 @@ vector<int> createS(vector<vector<int> > &sortedSplitArray, int straggler, bool 
     return S;
 }
 
+template<typename T>
+void printContainer(T Con) {
+  for (typename T::iterator it = Con.begin(); it != Con.end(); ++it)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+}
+
 vector<int> mergeInsertionSort(vector<int> &A) {
     cout << "Starting Array:" << endl;
     for (int num : A) {
@@ -147,8 +154,9 @@ vector<int> mergeInsertionSort(vector<int> &A) {
         straggler = A[A.size() - 1];
         A.pop_back();
     }
-
+    printContainer(A);
     vector<vector<int> > splitArray = createPairs(A);
+    printContainer(splitArray);
     vector<vector<int> > sortedSplitArray = sortEachPair(splitArray);
     sortByLargerValue(sortedSplitArray);
     insertionSortPairs(sortedSplitArray, sortedSplitArray.size() - 1);
