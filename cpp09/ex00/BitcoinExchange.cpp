@@ -115,11 +115,10 @@ void  myBitCoin::loopMineCoin(std::ifstream &inputFile) {
         if (validateDateDate(Date) && noNegativ(Line, nbr) 
             && noOverThousand(Line, nbr)) {
           std::map<std::string, float>::iterator DataIt = this->_Data.upper_bound(Date);
-          if (DataIt != _Data.end()) {
-            // std::cout << "Input:" << Date << " " << nbr << std::endl;
-            // std::cout << "DataFound: " << DataIt->first << " " << DataIt->second << std::endl;
+          if (DataIt == this->_Data.begin())
+            std::cout << Date << " => " << nbr << " = " << "No Value" << std::endl;
+          else {
             DataIt--;
-            // std::cout << "DataMinus: " << DataIt->first << " " << DataIt->second << std::endl << std::endl;
             std::cout << Date << " => " << nbr << " = " << DataIt->second * nbr << std::endl;
           }
         }
